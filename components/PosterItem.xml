@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- =======================================================================
+     PosterItem — portrait poster card used by the HomeScreen RowList.
+     Fills a 2:3 poster, scales up on focus with a red glow border, and
+     reveals the title beneath only when focused (Netflix-style).
+     ======================================================================= -->
+<component name="PosterItem" extends="Group">
+
+    <interface>
+        <field id="itemContent"  type="node"  onChange="onItemContentChanged" />
+        <field id="focusPercent" type="float" onChange="onFocusChanged" />
+    </interface>
+
+    <children>
+        <!-- Red glow border (revealed on focus) -->
+        <Rectangle id="focusBorder"
+            width="208" height="308"
+            translation="[-4, -4]"
+            color="0xE50914FF"
+            opacity="0.0" />
+
+        <!-- Card backing -->
+        <Rectangle id="cardBg" width="200" height="300" color="0x141414FF" />
+
+        <!-- Poster art (fills the card) -->
+        <Poster id="posterImage"
+            width="200" height="300"
+            loadDisplayMode="scaleToZoom"
+            failedBitmapUri="pkg:/images/poster_fallback.jpg"
+            loadingBitmapUri="pkg:/images/poster_fallback.jpg" />
+
+        <!-- Bottom gradient + title strip shown on focus -->
+        <Rectangle id="titleScrim" width="200" height="80" translation="[0, 220]" color="0x000000CC" opacity="0.0" />
+        <Label id="titleLabel"
+            font="font:SmallBoldSystemFont"
+            color="0xFFFFFFFF"
+            maxLines="2" wrap="true"
+            horizAlign="center"
+            width="192" height="70"
+            translation="[4, 232]"
+            opacity="0.0" />
+    </children>
+
+    <script type="text/brightscript" uri="PosterItem.brs" />
+</component>

@@ -68,7 +68,7 @@ before you host the remote feed below.
 The channel fetches its catalogue from:
 
 ```
-https://stream.parkerdatalink.com/roku/feed.json
+https://roku-feed.parkerdatalinktv.workers.dev/feed.json
 ```
 
 (defined in `components/MainScene.brs` → `FEED_URL()` — change it there if you

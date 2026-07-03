@@ -9,7 +9,7 @@
 ' Where the channel pulls its catalogue from. Host feed.json here and you can
 ' add / remove / reorder films without re-sideloading the channel.
 function FEED_URL() as string
-    return "https://stream.parkerdatalink.com/roku/feed.json"
+    return "https://roku-feed.parkerdatalinktv.workers.dev/feed.json"
 end function
 
 sub init()

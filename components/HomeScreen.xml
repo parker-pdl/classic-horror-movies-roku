@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- =======================================================================
-     HomeScreen — Netflix-style browse screen.
-     Atmospheric backdrop + a spotlight "hero" panel that reflects the
-     currently focused title, above horizontal category rows of poster cards.
+     HomeScreen — Netflix-style browse screen (overscan-safe layout).
+     All content kept inside the Roku title-safe area (~96px side / ~60px
+     top-bottom margins) so nothing is clipped by TV overscan.
      ======================================================================= -->
 <component name="HomeScreen" extends="Group" initialFocus="rowList">
 
@@ -12,74 +12,72 @@
     </interface>
 
     <children>
-        <!-- Full-bleed atmospheric backdrop -->
+        <!-- Full-bleed atmospheric backdrop (safe to reach edges) -->
         <Poster id="bgPoster"
             uri="pkg:/images/home_bg.jpg"
             width="1920" height="1080"
             loadDisplayMode="scaleToZoom" />
+        <Rectangle width="1920" height="1080" color="0x0A0A0A33" />
+        <Rectangle width="1920" height="600" translation="[0, 480]" color="0x0A0A0ACC" />
 
-        <!-- Legibility scrim (darker toward the bottom where the rows sit) -->
-        <Rectangle width="1920" height="1080" color="0x0A0A0A26" />
-        <Rectangle width="1920" height="620" translation="[0, 460]" color="0x0A0A0ACC" />
-
-        <!-- ── Branding ─────────────────────────────────────────────────── -->
+        <!-- ── Branding (top-left, inside safe area) ───────────────────────── -->
         <Label id="channelTitle"
             text="CLASSIC HORROR MOVIES"
             font="font:LargeBoldSystemFont"
             color="0xE50914FF"
             horizAlign="left"
-            width="1200" height="64"
-            translation="[90, 48]" />
+            width="1150" height="58"
+            translation="[100, 66]" />
         <Label id="bylineLabel"
             text="by ParkerDataLink.com"
             font="font:MediumSystemFont"
             color="0xBFBFBFFF"
             horizAlign="left"
-            width="800" height="40"
-            translation="[92, 116]" />
-        <Rectangle width="360" height="3" color="0x8B0000FF" translation="[92, 160]" />
+            width="700" height="38"
+            translation="[102, 130]" />
+        <Rectangle width="330" height="3" color="0x8B0000FF" translation="[102, 172]" />
 
         <!-- ── Spotlight hero (reflects the focused item) ──────────────────── -->
         <Poster id="heroPoster"
-            width="300" height="450"
+            width="232" height="348"
             loadDisplayMode="scaleToZoom"
             failedBitmapUri="pkg:/images/poster_fallback.jpg"
-            translation="[1500, 150]" />
+            translation="[1500, 140]" />
 
         <Label id="heroTitle"
             font="font:LargeBoldSystemFont"
             color="0xFFFFFFFF"
             maxLines="2" wrap="true"
-            width="1120" height="120"
-            translation="[90, 210]" />
+            width="1160" height="96"
+            translation="[100, 220]" />
         <Label id="heroMeta"
             font="font:SmallBoldSystemFont"
             color="0xE50914FF"
-            width="1000" height="36"
-            translation="[92, 330]" />
+            width="1000" height="34"
+            translation="[102, 320]" />
         <Label id="heroDesc"
             font="font:MediumSystemFont"
             color="0xD6D6D6FF"
-            maxLines="3" wrap="true"
-            width="1080" height="120"
-            translation="[92, 372]" />
+            maxLines="2" wrap="true"
+            width="1150" height="74"
+            translation="[102, 362]" />
         <Label id="heroHint"
             text="OK  ▶ Play      ◀ ▶ ▲ ▼  Browse"
             font="font:SmallSystemFont"
             color="0x9A9A9AFF"
-            width="1000" height="34"
-            translation="[92, 500]" />
+            width="1000" height="32"
+            translation="[102, 452]" />
 
-        <!-- ── Category rows ───────────────────────────────────────────────── -->
+        <!-- ── Category rows (start ~510, second row peeks; all within safe area) ── -->
         <RowList id="rowList"
-            translation="[90, 566]"
-            itemSize="[1740, 344]"
+            translation="[100, 512]"
+            itemSize="[1700, 338]"
             rowItemSize="[[200, 300]]"
             numRows="2"
-            itemSpacing="[0, 40]"
+            itemSpacing="[0, 28]"
             rowItemSpacing="[[22, 0]]"
             showRowLabel="true"
-            rowLabelOffset="[[0, 6]]"
+            rowLabelOffset="[[0, 4]]"
             rowLabelFont="font:MediumBoldSystemFont"
             rowLabelColor="0xF2F2F2FF"
             drawFocusFeedback="false"

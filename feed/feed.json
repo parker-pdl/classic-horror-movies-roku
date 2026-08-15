@@ -46,7 +46,7 @@
           "id": "the-brain-that-wouldn-t-die-1962",
           "title": "The Brain That Wouldn't Die",
           "year": "1962",
-          "description": "A mad surgeon keeps his fiancée's severed head alive while hunting for a new body.",
+          "description": "A mad surgeon keeps his fianc\u00e9e's severed head alive while hunting for a new body.",
           "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/Brainthatwouldntdie_film_poster.jpg",
           "streamUrl": "https://archive.org/download/the_brain_that_wouldnt_die/the_brain_that_wouldnt_die.mp4",
           "streamFormat": "mp4"
@@ -309,7 +309,8 @@
           "year": "1955",
           "description": "A nightmarish, nearly wordless descent into one woman's psychosis over a single night on skid row.",
           "streamUrl": "https://archive.org/download/DementiaDaughterOfHorror1955/daughter-of-horror.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.CrazyB.png"
         },
         {
           "id": "atom-age-vampire-1960",
@@ -317,7 +318,8 @@
           "year": "1960",
           "description": "A mad scientist's regenerating serum restores a disfigured woman - and turns him into a monster.",
           "streamUrl": "https://archive.org/download/AtomAgeVampire/AtomAgeVampire.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.CrazyInsane.png"
         },
         {
           "id": "phantom-ship-1936",
@@ -325,7 +327,8 @@
           "year": "1936",
           "description": "Bela Lugosi sails on the doomed Mary Celeste as her crew vanishes one by one.",
           "streamUrl": "https://archive.org/download/phantom_ship/phantom_ship.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.DemonNeon.png"
         },
         {
           "id": "king-of-the-zombies-1941",
@@ -333,7 +336,8 @@
           "year": "1941",
           "description": "A crash landing strands travelers on an island where a sinister doctor commands the living dead.",
           "streamUrl": "https://archive.org/download/King_of_the_Zombies/King_of_the_Zombies.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.Devil.png"
         },
         {
           "id": "silent-night-bloody-night-1972",
@@ -341,7 +345,8 @@
           "year": "1972",
           "description": "An inherited mansion with an asylum past draws a small town into a Christmas Eve killing spree.",
           "streamUrl": "https://archive.org/download/SilentNightBloodyNight/Silent_Night_Bloody_Night.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.Doorway.jpeg"
         },
         {
           "id": "dont-look-in-the-basement-1973",
@@ -349,7 +354,8 @@
           "year": "1973",
           "description": "A young nurse takes a job at a secluded asylum where the patients are not what they seem.",
           "streamUrl": "https://archive.org/download/Dont_Look_in_theBasement/Dont_Look_in_the_Basement.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.HallWay.png"
         }
       ]
     },
@@ -470,7 +476,8 @@
           "year": "1958",
           "description": "An astronaut returns from space dead - and incubating an alien life form.",
           "streamUrl": "https://archive.org/download/night-of-the-blood-beast-1958-michael-emmet-angela-greene-john-baer-horror-sci-fi-movie/Night%20of%20the%20Blood%20Beast%20%281958%29%20Michael%20Emmet%2C%20Angela%20Greene%2C%20John%20Baer%20_%20Horror%2C%20Sci-Fi%20Movie.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.PDL.horror%20logo.png"
         },
         {
           "id": "beast-from-haunted-cave-1959",
@@ -478,7 +485,8 @@
           "year": "1959",
           "description": "Gold thieves fleeing through the snow awaken a spider-like horror in a mountain cave.",
           "streamUrl": "https://archive.org/download/beast-from-haunted-cave-1959_202405/Beast%20from%20Haunted%20Cave%20%281959%29.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.PDL.horror%20logo2.png"
         },
         {
           "id": "gammera-the-invincible-1966",
@@ -486,7 +494,8 @@
           "year": "1966",
           "description": "An atomic blast frees a giant fire-breathing turtle that levels everything in its path.",
           "streamUrl": "https://archive.org/download/gammera/gamera.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.abyss.jpeg"
         },
         {
           "id": "creature-from-the-haunted-sea-1961",
@@ -494,7 +503,8 @@
           "year": "1961",
           "description": "Roger Corman's horror-comedy of crooks, Cuban gold, and a very cheap sea monster.",
           "streamUrl": "https://archive.org/download/CreatureFromTheHauntedSea/CreatureFromTheHauntedSea.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.alien.png"
         }
       ]
     },
@@ -505,37 +515,41 @@
           "id": "tears-of-steel-2012",
           "title": "Tears of Steel",
           "year": "2012",
-          "description": "In a ruined Amsterdam, scientists reenact a fateful memory to stop robot warriors. CC-BY 3.0 — Blender Foundation | mango.blender.org",
+          "description": "In a ruined Amsterdam, scientists reenact a fateful memory to stop robot warriors. CC-BY 3.0 \u2014 Blender Foundation | mango.blender.org",
           "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
           "streamFormat": "mp4",
-          "license": "CC-BY 3.0 — Blender Foundation"
+          "license": "CC-BY 3.0 \u2014 Blender Foundation",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.app.IMAGE.png"
         },
         {
           "id": "charge-2022",
           "title": "Charge",
           "year": "2022",
-          "description": "A desperate drifter raids an automated power plant in a dystopian energy-starved future. CC-BY — Blender Studio | studio.blender.org",
+          "description": "A desperate drifter raids an automated power plant in a dystopian energy-starved future. CC-BY \u2014 Blender Studio | studio.blender.org",
           "streamUrl": "https://archive.org/download/charge-blender-open-movie-1608p/Charge%20-%20Blender%20Open%20Movie%201608p.mp4",
           "streamFormat": "mp4",
-          "license": "CC-BY — Blender Studio"
+          "license": "CC-BY \u2014 Blender Studio",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.bath2.jpg"
         },
         {
           "id": "cosmos-laundromat-2015",
           "title": "Cosmos Laundromat: First Cycle",
           "year": "2015",
-          "description": "A suicidal sheep is offered every life he could ever want by a mysterious salesman. CC-BY 4.0 — Blender Institute",
+          "description": "A suicidal sheep is offered every life he could ever want by a mysterious salesman. CC-BY 4.0 \u2014 Blender Institute",
           "streamUrl": "https://archive.org/download/CosmosLaundromatFirstCycle/Cosmos%20Laundromat%20-%20First%20Cycle%20%281080p%29.mp4",
           "streamFormat": "mp4",
-          "license": "CC-BY 4.0 — Blender Institute"
+          "license": "CC-BY 4.0 \u2014 Blender Institute",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.boilerroom.png"
         },
         {
           "id": "elephants-dream-2006",
           "title": "Elephants Dream",
           "year": "2006",
-          "description": "Two beings explore a vast, hostile machine world that may exist only in their minds. CC-BY 2.5 — Blender Foundation | orange.blender.org",
+          "description": "Two beings explore a vast, hostile machine world that may exist only in their minds. CC-BY 2.5 \u2014 Blender Foundation | orange.blender.org",
           "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
           "streamFormat": "mp4",
-          "license": "CC-BY 2.5 — Blender Foundation"
+          "license": "CC-BY 2.5 \u2014 Blender Foundation",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.clown.png"
         }
       ]
     },
@@ -627,7 +641,7 @@
           "id": "frankenstein-1910",
           "title": "Frankenstein",
           "year": "1910",
-          "description": "The Edison Company's landmark silent film — the first cinematic adaptation of Mary Shelley's novel.",
+          "description": "The Edison Company's landmark silent film \u2014 the first cinematic adaptation of Mary Shelley's novel.",
           "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/Frankenstein_(1910)_poster.jpg",
           "streamUrl": "https://archive.org/download/Frankenstein1910/Frankenstein-1910.mp4",
           "streamFormat": "mp4"
@@ -647,7 +661,8 @@
           "year": "1920",
           "description": "A rabbi molds a clay giant to protect the ghetto - until the creature turns on its makers.",
           "streamUrl": "https://archive.org/download/TheGolem_893/TheGolem_512kb.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.comic.PNG"
         },
         {
           "id": "the-phantom-carriage-1921",
@@ -655,15 +670,17 @@
           "year": "1921",
           "description": "The last sinner to die each year must drive Death's carriage - a haunting Swedish masterpiece.",
           "streamUrl": "https://archive.org/download/the-phantom-carriage-1921_202503/The%20Phantom%20Carriage%201921.ia.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.creepy-faceless-tall-man.jpg"
         },
         {
           "id": "haxan-1922",
-          "title": "Häxan",
+          "title": "H\u00e4xan",
           "year": "1922",
           "description": "Witchcraft through the ages - part documentary, part fever dream, wholly unsettling.",
           "streamUrl": "https://archive.org/download/Haxan_tinted_and_subtitled/Haxan_512kb.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.death.png"
         },
         {
           "id": "wolf-blood-1925",
@@ -671,7 +688,8 @@
           "year": "1925",
           "description": "A logger given a transfusion of wolf's blood fears he is becoming a beast - the first werewolf film.",
           "streamUrl": "https://archive.org/download/WolfBlood1925/WolfBlood_512kb.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.death2.png"
         },
         {
           "id": "the-unknown-1927",
@@ -679,7 +697,8 @@
           "year": "1927",
           "description": "Lon Chaney is an armless knife-thrower with a terrible secret and a darker obsession.",
           "streamUrl": "https://archive.org/download/the-unknown_1927/the-unknown_1927.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.deathdark.png"
         }
       ]
     },
@@ -690,16 +709,16 @@
           "id": "the_haunted_castle_1896",
           "title": "Le Manoir du Diable",
           "year": "1896",
-          "description": "Georges Méliès's pioneering trick film — often called the first horror film ever made. A bat transforms into Mephistopheles and conjures phantoms, skeletons and a cauldron inside a haunted castle.",
+          "description": "Georges M\u00e9li\u00e8s's pioneering trick film \u2014 often called the first horror film ever made. A bat transforms into Mephistopheles and conjures phantoms, skeletons and a cauldron inside a haunted castle.",
           "poster": "https://archive.org/services/img/The_Haunted_Castle_1896",
           "streamUrl": "https://archive.org/download/The_Haunted_Castle_1896/The_Haunted_Castle_1896.mp4",
           "streamFormat": "mp4"
         },
         {
           "id": "le-ch-teau-hant-1897",
-          "title": "Le Château Hanté",
+          "title": "Le Ch\u00e2teau Hant\u00e9",
           "year": "1897",
-          "description": "Georges Méliès's earliest horror film — a demon conjures skeletons and ghosts in a haunted castle. The first horror movie ever made. ~3 min.",
+          "description": "Georges M\u00e9li\u00e8s's earliest horror film \u2014 a demon conjures skeletons and ghosts in a haunted castle. The first horror movie ever made. ~3 min.",
           "poster": "https://archive.org/services/img/LeChteauHante",
           "streamUrl": "https://archive.org/download/LeChteauHante/1896GeorgesMlisLeChteauHante.mp4",
           "streamFormat": "mp4"
@@ -708,7 +727,7 @@
           "id": "a-trip-to-the-moon-1902",
           "title": "A Trip to the Moon",
           "year": "1902",
-          "description": "Méliès's landmark fantasy-horror adventure — astronomers travel to the moon and are captured by its monstrous inhabitants. ~14 min.",
+          "description": "M\u00e9li\u00e8s's landmark fantasy-horror adventure \u2014 astronomers travel to the moon and are captured by its monstrous inhabitants. ~14 min.",
           "poster": "https://archive.org/services/img/ATripToTheMoon1902",
           "streamUrl": "https://archive.org/download/ATripToTheMoon1902/A%20Trip%20to%20the%20Moon%20%281902%29.mp4",
           "streamFormat": "mp4"
@@ -717,7 +736,7 @@
           "id": "lechaudroninfernal",
           "title": "The Infernal Cauldron",
           "year": "1903",
-          "description": "A grinning demon hurls his victims into a blazing cauldron, their souls rising as ghostly green apparitions, in Méliès's hand-tinted vision of hell.",
+          "description": "A grinning demon hurls his victims into a blazing cauldron, their souls rising as ghostly green apparitions, in M\u00e9li\u00e8s's hand-tinted vision of hell.",
           "poster": "https://archive.org/services/img/LeChaudronInfernal",
           "streamUrl": "https://archive.org/download/LeChaudronInfernal/1903GeorgesMeliesLeChaudronInfernalinfernalCauldron.mp4",
           "streamFormat": "mp4"
@@ -726,7 +745,7 @@
           "id": "lemonstre",
           "title": "The Monster",
           "year": "1903",
-          "description": "An Egyptian prince begs a dervish to revive his dead wife. A dancing skeleton and a shape-shifting specter follow in Méliès's eerie graveyard fantasy.",
+          "description": "An Egyptian prince begs a dervish to revive his dead wife. A dancing skeleton and a shape-shifting specter follow in M\u00e9li\u00e8s's eerie graveyard fantasy.",
           "poster": "https://archive.org/services/img/LeMonstre",
           "streamUrl": "https://archive.org/download/LeMonstre/1903GeorgesMeliesLeMonstretheMonster.mp4",
           "streamFormat": "mp4"
@@ -735,7 +754,7 @@
           "id": "legend-of-a-ghost-1908",
           "title": "Legend of a Ghost",
           "year": "1908",
-          "description": "Segundo de Chomón's eerie ghost story, packed with double-exposures and trick photography. ~8 min.",
+          "description": "Segundo de Chom\u00f3n's eerie ghost story, packed with double-exposures and trick photography. ~8 min.",
           "poster": "https://archive.org/services/img/LaLgendeDuFantome",
           "streamUrl": "https://archive.org/download/LaLgendeDuFantome/1908SegundoDeChomnLaLgendeDuFantome-LegendOfAGhost.mp4",
           "streamFormat": "mp4"
@@ -744,7 +763,7 @@
           "id": "the-sealed-room-1909",
           "title": "The Sealed Room",
           "year": "1909",
-          "description": "D.W. Griffith's brutal Poe-inspired short — a jealous king bricks his wife alive inside a secret room. ~10 min.",
+          "description": "D.W. Griffith's brutal Poe-inspired short \u2014 a jealous king bricks his wife alive inside a secret room. ~10 min.",
           "poster": "https://archive.org/services/img/the-sealed-room-1909",
           "streamUrl": "https://archive.org/download/the-sealed-room-1909/The%20Sealed%20Room%20%281909%29.mp4",
           "streamFormat": "mp4"
@@ -753,7 +772,7 @@
           "id": "dr.jekyllandmr.hyde1912_201312",
           "title": "Dr. Jekyll and Mr. Hyde",
           "year": "1912",
-          "description": "One of the earliest screen adaptations of Stevenson's tale — a respected doctor drinks his own potion and unleashes the monstrous Mr. Hyde.",
+          "description": "One of the earliest screen adaptations of Stevenson's tale \u2014 a respected doctor drinks his own potion and unleashes the monstrous Mr. Hyde.",
           "poster": "https://archive.org/services/img/Dr.JekyllAndMr.Hyde1912_201312",
           "streamUrl": "https://archive.org/download/Dr.JekyllAndMr.Hyde1912_201312/Dr.%20Jekyll%20and%20Mr.%20Hyde%20%281912%29.mp4",
           "streamFormat": "mp4"
@@ -789,7 +808,7 @@
           "id": "un-chien-andalou-1929",
           "title": "Un Chien Andalou",
           "year": "1929",
-          "description": "Buñuel and Dalí's notorious surrealist nightmare — a sliced eyeball, ants in a hand, a man dragging a piano. Pure dread. ~16 min.",
+          "description": "Bu\u00f1uel and Dal\u00ed's notorious surrealist nightmare \u2014 a sliced eyeball, ants in a hand, a man dragging a piano. Pure dread. ~16 min.",
           "poster": "https://archive.org/services/img/un-chien-andalou-1929",
           "streamUrl": "https://archive.org/download/un-chien-andalou-1929/Un%20Chien%20Andalou%20%281929%29.mp4",
           "streamFormat": "mp4"
@@ -798,7 +817,7 @@
           "id": "the-midnight-parasites-1972",
           "title": "The Midnight Parasites",
           "year": "1972",
-          "description": "Yoji Kuri's psychedelic animated horror — grotesque creatures devour each other in a Hieronymus Bosch fever dream. 9 min.",
+          "description": "Yoji Kuri's psychedelic animated horror \u2014 grotesque creatures devour each other in a Hieronymus Bosch fever dream. 9 min.",
           "poster": "https://archive.org/services/img/midnight-parasites-1972",
           "streamUrl": "https://archive.org/download/midnight-parasites-1972/The%20Midnight%20Parasites%20%281972%2C%209%20min%29%20Directed%20by%20Yoji%20Kuri.mp4.mp4",
           "streamFormat": "mp4"
@@ -1102,7 +1121,8 @@
           "year": "1942",
           "description": "Bela Lugosi runs a soup kitchen by day and a criminal gang - with a basement of corpses - by night.",
           "streamUrl": "https://archive.org/download/Bowery_at_Midnight/Bowery_at_Midnight_1942.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.deathshadow.png"
         },
         {
           "id": "the-rogues-tavern-1936",
@@ -1110,7 +1130,8 @@
           "year": "1936",
           "description": "Guests at a lonely roadhouse are stalked by a killer who may not be human.",
           "streamUrl": "https://archive.org/download/rogues_tavern/rogues_tavern.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.download.jpeg"
         },
         {
           "id": "king-of-the-zombies-1941",
@@ -1118,7 +1139,8 @@
           "year": "1941",
           "description": "A crash landing strands travelers on an island where a sinister doctor commands the living dead.",
           "streamUrl": "https://archive.org/download/King_of_the_Zombies/King_of_the_Zombies.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.Devil.png"
         }
       ]
     },
@@ -1201,7 +1223,7 @@
           "id": "the-brain-that-wouldn-t-die-1962",
           "title": "The Brain That Wouldn't Die",
           "year": "1962",
-          "description": "A severed head nags her mad scientist fiancé from a pan.",
+          "description": "A severed head nags her mad scientist fianc\u00e9 from a pan.",
           "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/Brainthatwouldntdie_film_poster.jpg",
           "streamUrl": "https://archive.org/download/the_brain_that_wouldnt_die/the_brain_that_wouldnt_die.mp4",
           "streamFormat": "mp4"
@@ -1309,7 +1331,7 @@
           "id": "the-incredible-petrified-world-1959",
           "title": "The Incredible Petrified World",
           "year": "1959",
-          "description": "Divers get trapped in a cave system full of papier-mâché rocks.",
+          "description": "Divers get trapped in a cave system full of papier-m\u00e2ch\u00e9 rocks.",
           "poster": "https://archive.org/services/img/TheIncrediblePetrifiedWorld",
           "streamUrl": "https://archive.org/download/TheIncrediblePetrifiedWorld/TheIncrediblePetrifiedWorld.mp4",
           "streamFormat": "mp4"
@@ -1330,7 +1352,8 @@
           "description": "Surf music, beach parties, and a rubber-suited sea beast with a grudge.",
           "streamUrl": "https://archive.org/download/TheBeachGirlsAndTheMonster/TheBeachGirlsAndTheMonster.mp4",
           "streamFormat": "mp4",
-          "license": "CC-BY 3.0 - via Internet Archive"
+          "license": "CC-BY 3.0 - via Internet Archive",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.film.png"
         },
         {
           "id": "creature-from-the-haunted-sea-1961",
@@ -1338,7 +1361,8 @@
           "year": "1961",
           "description": "Roger Corman's horror-comedy of crooks, Cuban gold, and a very cheap sea monster.",
           "streamUrl": "https://archive.org/download/CreatureFromTheHauntedSea/CreatureFromTheHauntedSea.mp4",
-          "streamFormat": "mp4"
+          "streamFormat": "mp4",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.alien.png"
         }
       ]
     },
@@ -1352,7 +1376,8 @@
           "description": "The official Parker Data Link channel promo.",
           "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/2Eye.roku_launc2h.mp4",
           "streamFormat": "mp4",
-          "license": "ParkerDataLink.com Original"
+          "license": "ParkerDataLink.com Original",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.ghoststairs.jpeg"
         },
         {
           "id": "pdl-promo-classic-movie",
@@ -1361,25 +1386,28 @@
           "description": "A look at the classics waiting in the vault.",
           "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/Classic%20Move%20Promo.mp4",
           "streamFormat": "mp4",
-          "license": "ParkerDataLink.com Original"
+          "license": "ParkerDataLink.com Original",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.hell.png"
         },
         {
           "id": "pdl-trailer-1",
           "title": "Trailer #1",
           "year": "",
-          "description": "Classic Horror Movies — channel trailer.",
+          "description": "Classic Horror Movies \u2014 channel trailer.",
           "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/Horror%20Trailer.mp4",
           "streamFormat": "mp4",
-          "license": "ParkerDataLink.com Original"
+          "license": "ParkerDataLink.com Original",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.neon.png"
         },
         {
           "id": "pdl-trailer-2",
           "title": "Trailer #2",
           "year": "",
-          "description": "Classic Horror Movies — channel trailer.",
+          "description": "Classic Horror Movies \u2014 channel trailer.",
           "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/Horror%20Trailer.pdl.mp4",
           "streamFormat": "mp4",
-          "license": "ParkerDataLink.com Original"
+          "license": "ParkerDataLink.com Original",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.nurse.png"
         },
         {
           "id": "pdl-inspired-horror-trailer",
@@ -1388,16 +1416,18 @@
           "description": "A trailer inspired by the golden age of horror.",
           "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/Inspire%20promo.mp4",
           "streamFormat": "mp4",
-          "license": "ParkerDataLink.com Original"
+          "license": "ParkerDataLink.com Original",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.pdlrokuium.png"
         },
         {
           "id": "pdl-trailer-3",
           "title": "Trailer #3",
           "year": "",
-          "description": "Classic Horror Movies — channel trailer.",
+          "description": "Classic Horror Movies \u2014 channel trailer.",
           "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/video_147117.mp4",
           "streamFormat": "mp4",
-          "license": "ParkerDataLink.com Original"
+          "license": "ParkerDataLink.com Original",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/poster.1/1.road.jpg"
         }
       ]
     }

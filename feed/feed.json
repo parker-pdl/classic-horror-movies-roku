@@ -75,8 +75,8 @@
           "year": "2024",
           "description": "Three individuals attempt to reconcile fractured memories and incomplete observations regarding something that is simultaneously known and unknowable.",
           "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/there-is-no-antimemetics-2024.jpg",
-          "streamUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/There_Is_No_Antimemetics_Division.webm",
-          "streamFormat": "webm"
+          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/antimemetics/antimemetics.m3u8",
+          "streamFormat": "hls"
         },
         {
           "id": "backrooms-level-1-2022",

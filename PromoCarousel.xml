@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- =======================================================================
+     PromoCarousel — auto-rotating promo banner shown at the top of the
+     home screen. Cycles through pre-composed 1920x360 banner images
+     (images/promo/banners/) and a video trailer item (expands to
+     full-screen playback with audio, skip/mute hint, then returns).
+     ======================================================================= -->
+<component name="PromoCarousel" extends="Group" focusable="true">
+
+    <interface>
+        <!-- Array of item descriptors: { uri, type: "image"|"video", label, capTitle, capSubtitle } -->
+        <field id="items"         type="array"   onChange="onItemsChanged" />
+        <field id="promoTitle"    type="string"  onChange="onTextChanged" />
+        <field id="promoSubtitle" type="string"  onChange="onTextChanged" />
+        <field id="intervalSecs" type="float"  value="5.0" />
+
+        <field id="isVideoActive" type="boolean" value="false" />
+        <field id="muted"         type="boolean" value="false" />
+        <field id="skipVideo"     type="boolean" alwaysNotify="true" onChange="onSkipVideo" />
+        <field id="toggleMute"    type="boolean" alwaysNotify="true" onChange="onToggleMute" />
+
+        <!-- Set false once the user scrolls away from the carousel (down into
+             the row list) so it stops auto-advancing / doesn't start playing
+             video audio while they're browsing elsewhere. Set true again when
+             they scroll back up to it. -->
+        <field id="active" type="boolean" value="true" onChange="onActiveChanged" />
+    </interface>
+
+    <children>
+        <Poster id="posterBack"
+            width="1920" height="360"
+            loadDisplayMode="scaleToFit"
+            opacity="1.0" />
+        <Poster id="posterFront"
+            width="1920" height="360"
+            loadDisplayMode="scaleToFit"
+            opacity="0.0" />
+
+        <!-- Smooth full-width left-to-right scrim (stacked translucent
+             rectangles, NOT one hard-edged box) so the caption is legible
+             without ever reading as a floating card over the image. -->
+        <Rectangle width="500"  height="360" translation="[0, 0]"   color="0x00000099" />
+        <Rectangle width="380"  height="360" translation="[500, 0]" color="0x00000070" />
+        <Rectangle width="300"  height="360" translation="[880, 0]" color="0x00000040" />
+        <Rectangle width="260"  height="360" translation="[1180, 0]" color="0x00000020" />
+
+        <Label id="titleLabel"
+            font="font:LargeBoldSystemFont"
+            color="0xFFFFFFFF"
+            horizAlign="left"
+            width="900" height="56"
+            translation="[100, 216]" />
+        <Label id="subtitleLabel"
+            font="font:MediumSystemFont"
+            color="0xFF2E9DFF"
+            horizAlign="left"
+            width="900" height="40"
+            translation="[102, 272]" />
+
+        <Animation id="crossFadeAnim" duration="1.0" easeFunction="inOutQuadratic">
+            <FloatFieldInterpolator id="fadeIn"  key="[0.0, 1.0]" keyValue="[0.0, 1.0]" fieldToInterp="posterFront.opacity" />
+            <FloatFieldInterpolator id="fadeOut" key="[0.0, 1.0]" keyValue="[1.0, 0.0]" fieldToInterp="posterBack.opacity" />
+        </Animation>
+
+        <Timer id="advanceTimer" repeat="true" />
+
+        <!-- Full-screen video takeover, on top of everything -->
+        <Video id="videoPlayer"
+            width="1920" height="1080"
+            translation="[0, 0]"
+            visible="false"
+            enableTrickPlay="false" />
+        <Rectangle id="videoHintBg" width="1920" height="100" translation="[0, 980]" color="0x000000AA" visible="false" />
+        <Label id="videoHint"
+            font="font:MediumBoldSystemFont"
+            color="0x00E5FFFF"
+            horizAlign="center"
+            width="1920" height="40"
+            translation="[0, 1010]"
+            visible="false" />
+    </children>
+
+    <script type="text/brightscript" uri="PromoCarousel.brs" />
+</component>

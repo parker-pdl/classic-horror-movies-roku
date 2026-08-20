@@ -11,6 +11,40 @@ sub init()
 
     m.rowList.observeField("rowItemFocused",  "onRowItemFocused")
     m.rowList.observeField("rowItemSelected", "onRowItemSelected")
+
+    ' ── Promo carousel wiring ────────────────────────────────────────────
+    m.promoCarousel = m.top.findNode("promoCarousel")
+    if m.promoCarousel <> invalid
+        ' Register the focus-handoff observer BEFORE assigning items, so we
+        ' never miss the very first isVideoActive change if item[0] were a
+        ' video (it isn't right now, but keep this ordering as a safe habit).
+        m.promoCarousel.observeField("isVideoActive", "onCarouselVideoActiveChanged")
+
+        m.promoCarousel.items = [
+            { uri: "pkg:/images/promo/banners/pdl-brand.jpg", type: "image", capTitle: "PARKER DATA LINK", capSubtitle: "Horror. Sci-Fi. Cult Classics." }
+            { uri: "pkg:/images/promo/banners/advent-poster.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
+            { uri: "pkg:/images/promo/banners/advent-still1.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
+            { uri: "pkg:/images/promo/banners/advent-still2.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
+            { uri: "pkg:/videos/my-passion-1.mp4", type: "video", label: "My Passion", capTitle: "MY PASSION", capSubtitle: "Watch Our Ad" }
+            { uri: "pkg:/images/promo/banners/advent-poster.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
+            { uri: "pkg:/images/promo/banners/advent-still3.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
+            { uri: "pkg:/images/promo/banners/advent-still4.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
+            { uri: "pkg:/images/promo/banners/advent-still5.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
+        ]
+    end if
+end sub
+
+' While the carousel's video item is playing, hand it focus so any remote
+' button reaches its onKeyEvent (skip/mute). Otherwise focus stays on the
+' row list for normal browsing -- this lets the user scroll away from the
+' carousel at any time, video or not.
+sub onCarouselVideoActiveChanged()
+    if m.promoCarousel = invalid then return
+    if m.promoCarousel.isVideoActive
+        m.promoCarousel.setFocus(true)
+    else
+        m.rowList.setFocus(true)
+    end if
 end sub
 
 ' Bind the ContentNode tree and seed the hero with the first title

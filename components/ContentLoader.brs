@@ -1,13 +1,23 @@
 ' =============================================================================
 ' ContentLoader.brs — remote feed fetch + ContentNode tree builder (Task thread)
 ' =============================================================================
-' Strategy:
-'   1. HTTP GET the remote feed (feedUrl) so Parker can update the catalogue
-'      on parkerdatalink.com without re-sideloading the channel.
-'   2. If the remote fetch fails (offline, 404, timeout), fall back to the
-'      bundled pkg:/feed/feed.json so the channel is never empty.
+' Strategy (TEMPORARILY REVERSED -- see note below):
+'   1. Use the bundled pkg:/feed/feed.json FIRST. The remote feed
+'      (roku-feed.parkerdatalinktv.workers.dev) just proxies this repo's
+'      feed/feed.json from GitHub's main branch -- and pushes to that repo
+'      are currently blocked from the build environment, so the remote
+'      feed is stale (missing Advent, the Top 5 row, everything). Testing
+'      against a sideloaded build was silently pulling old data from the
+'      remote feed instead of what's actually in this package. Bundled-
+'      first guarantees a sideloaded build shows exactly what's in it.
+'   2. Fall back to the remote feed only if the bundled copy is somehow
+'      missing/corrupt.
 '   3. Parse the JSON and build a root ContentNode whose children are the
 '      category nodes, each holding the movie nodes the RowList renders.
+'
+'   TODO: once GitHub push access is restored and the live feed is back in
+'   sync, flip this back to remote-first so Parker can update the catalog
+'   from parkerdatalink.com without re-sideloading the channel.
 '
 ' Feed item fields consumed downstream:
 '   title, description, HDPosterUrl (poster), streamUrl (direct MP4/HLS),
@@ -19,20 +29,17 @@ sub init()
 end sub
 
 sub loadFeed()
-    jsonText = invalid
+    ' 1) Bundled copy first (see note above)
+    jsonText = ReadAsciiFile("pkg:/feed/feed.json")
     src = "bundled"
 
-    ' 1) Try the remote feed first
-    url = m.top.feedUrl
-    if url <> invalid and url <> ""
-        jsonText = httpGetString(url, 15000)
-        if jsonText <> invalid and jsonText <> "" then src = "remote"
-    end if
-
-    ' 2) Fall back to the bundled copy
+    ' 2) Fall back to the remote feed only if the bundled copy failed
     if jsonText = invalid or jsonText = ""
-        jsonText = ReadAsciiFile("pkg:/feed/feed.json")
-        src = "bundled"
+        url = m.top.feedUrl
+        if url <> invalid and url <> ""
+            jsonText = httpGetString(url, 15000)
+            if jsonText <> invalid and jsonText <> "" then src = "remote"
+        end if
     end if
 
     feed = invalid

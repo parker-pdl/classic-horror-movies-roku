@@ -12,11 +12,16 @@
     </interface>
 
     <children>
-        <!-- Red glow border (revealed on focus) -->
+        <!-- Neon-red glow border (revealed on focus) — outer soft glow + crisp inner ring -->
+        <Rectangle id="focusGlow"
+            width="220" height="320"
+            translation="[-10, -10]"
+            color="0xFF1E3E40"
+            opacity="0.0" />
         <Rectangle id="focusBorder"
             width="208" height="308"
             translation="[-4, -4]"
-            color="0xE50914FF"
+            color="0xFF1E3EFF"
             opacity="0.0" />
 
         <!-- Card backing -->

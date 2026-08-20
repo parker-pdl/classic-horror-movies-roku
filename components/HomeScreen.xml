@@ -12,65 +12,84 @@
     </interface>
 
     <children>
-        <!-- Full-bleed atmospheric backdrop (safe to reach edges) -->
+        <!-- Full-bleed backdrop — true near-black (Netflix-style) so the
+             neon accents pop cleanly. -->
         <Poster id="bgPoster"
             uri="pkg:/images/home_bg.jpg"
             width="1920" height="1080"
             loadDisplayMode="scaleToZoom" />
-        <Rectangle width="1920" height="1080" color="0x0A0A0A33" />
-        <Rectangle width="1920" height="600" translation="[0, 480]" color="0x0A0A0ACC" />
+        <Rectangle width="1920" height="1080" color="0x141414E6" />
+        <Rectangle width="1920" height="740" translation="[0, 360]" color="0x0D0D0DF2" />
 
-        <!-- ── Branding (top-left, inside safe area) ───────────────────────── -->
+        <!-- ── Promo carousel (auto-rotating Advent + PDL brand art, top of
+             screen, 360px tall). Focus stays on rowList at all times except
+             during the "My Passion" video, which the carousel takes focus
+             for so any remote button can skip it. ────────────────────── -->
+        <PromoCarousel id="promoCarousel"
+            translation="[0, 0]"
+            promoTitle="ADVENT"
+            promoSubtitle="A NEW HORROR SHORT  •  NOW STREAMING" />
+
+        <!-- ── Channel branding — overlaid on the carousel itself (top-left,
+             on a translucent strip so it reads over any rotating image)
+             instead of stacked below it, to keep the layout compact. ──── -->
+        <Rectangle width="1920" height="104" translation="[0, 0]" color="0x000000A6" />
+        <Label id="channelTitleGlow"
+            text="CLASSIC HORROR MOVIES"
+            font="font:LargeBoldSystemFont"
+            color="0xFF1E3E4D"
+            horizAlign="left"
+            width="1156" height="64"
+            translation="[97, 21]" />
         <Label id="channelTitle"
             text="CLASSIC HORROR MOVIES"
             font="font:LargeBoldSystemFont"
-            color="0xE50914FF"
+            color="0xFF1E3EFF"
             horizAlign="left"
             width="1150" height="58"
-            translation="[100, 66]" />
+            translation="[100, 24]" />
         <Label id="bylineLabel"
             text="by ParkerDataLink.com"
             font="font:MediumSystemFont"
-            color="0xBFBFBFFF"
+            color="0xE8E8E8FF"
             horizAlign="left"
             width="700" height="38"
-            translation="[102, 130]" />
-        <Rectangle width="330" height="3" color="0x8B0000FF" translation="[102, 172]" />
+            translation="[102, 66]" />
 
         <!-- ── Spotlight hero (reflects the focused item) ──────────────────── -->
         <Poster id="heroPoster"
-            width="232" height="348"
+            width="200" height="300"
             loadDisplayMode="scaleToZoom"
             failedBitmapUri="pkg:/images/poster_fallback.jpg"
-            translation="[1500, 140]" />
+            translation="[1560, 396]" />
 
         <Label id="heroTitle"
             font="font:LargeBoldSystemFont"
             color="0xFFFFFFFF"
             maxLines="2" wrap="true"
-            width="1160" height="96"
-            translation="[100, 220]" />
+            width="1420" height="96"
+            translation="[100, 396]" />
         <Label id="heroMeta"
             font="font:SmallBoldSystemFont"
-            color="0xE50914FF"
+            color="0xFF2E9DFF"
             width="1000" height="34"
-            translation="[102, 320]" />
+            translation="[102, 496]" />
         <Label id="heroDesc"
             font="font:MediumSystemFont"
-            color="0xD6D6D6FF"
+            color="0xE0E0E0FF"
             maxLines="2" wrap="true"
-            width="1150" height="74"
-            translation="[102, 362]" />
+            width="1420" height="74"
+            translation="[102, 538]" />
         <Label id="heroHint"
             text="OK  ▶ Play      ◀ ▶ ▲ ▼  Browse"
             font="font:SmallSystemFont"
-            color="0x9A9A9AFF"
+            color="0x00E5FFFF"
             width="1000" height="32"
-            translation="[102, 452]" />
+            translation="[102, 628]" />
 
-        <!-- ── Category rows (start ~510, second row peeks; all within safe area) ── -->
+        <!-- ── Category rows (start ~688, second row peeks; all within safe area) ── -->
         <RowList id="rowList"
-            translation="[100, 512]"
+            translation="[100, 688]"
             itemSize="[1700, 338]"
             rowItemSize="[[200, 300]]"
             numRows="2"
@@ -79,7 +98,7 @@
             showRowLabel="true"
             rowLabelOffset="[[0, 4]]"
             rowLabelFont="font:MediumBoldSystemFont"
-            rowLabelColor="0xF2F2F2FF"
+            rowLabelColor="0xFFFFFFFF"
             drawFocusFeedback="false"
             rowFocusAnimationStyle="fixedFocusWrap"
             vertFocusAnimationStyle="floatingFocus"

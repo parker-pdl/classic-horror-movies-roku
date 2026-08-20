@@ -8,7 +8,7 @@ title=Classic Horror Movies by: ParkerDataLink.com
 subtitle=Free public-domain horror, sci-fi & creature features
 major_version=1
 minor_version=1
-build_version=00013
+build_version=00014
 
 ## Channel Icon (shown on the Roku home grid)
 mm_icon_focus_fhd=pkg:/images/channel_icon_fhd.png

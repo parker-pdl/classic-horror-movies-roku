@@ -15,17 +15,17 @@ sub init()
     ' ── Promo carousel wiring ────────────────────────────────────────────
     m.promoCarousel = m.top.findNode("promoCarousel")
     if m.promoCarousel <> invalid
-        ' Register the focus-handoff observer BEFORE assigning items, so we
-        ' never miss the very first isVideoActive change if item[0] were a
-        ' video (it isn't right now, but keep this ordering as a safe habit).
+        ' Register the focus-handoff observer BEFORE assigning items -- item[0]
+        ' is now the My Passion video, so we must not miss its very first
+        ' isVideoActive change (the carousel auto-plays it on load).
         m.promoCarousel.observeField("isVideoActive", "onCarouselVideoActiveChanged")
 
         m.promoCarousel.items = [
+            { uri: "pkg:/videos/my-passion-1.mp4", type: "video", label: "My Passion", capTitle: "MY PASSION", capSubtitle: "Watch Our Ad" }
             { uri: "pkg:/images/promo/banners/pdl-brand.jpg", type: "image", capTitle: "PARKER DATA LINK", capSubtitle: "Horror. Sci-Fi. Cult Classics." }
             { uri: "pkg:/images/promo/banners/advent-poster.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
             { uri: "pkg:/images/promo/banners/advent-still1.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
             { uri: "pkg:/images/promo/banners/advent-still2.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
-            { uri: "pkg:/videos/my-passion-1.mp4", type: "video", label: "My Passion", capTitle: "MY PASSION", capSubtitle: "Watch Our Ad" }
             { uri: "pkg:/images/promo/banners/advent-poster.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
             { uri: "pkg:/images/promo/banners/advent-still3.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
             { uri: "pkg:/images/promo/banners/advent-still4.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }

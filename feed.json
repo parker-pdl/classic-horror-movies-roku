@@ -1,6 +1,6 @@
 {
   "providerName": "Classic Horror Movies by: ParkerDataLink.com",
-  "lastUpdated": "2026-08-20",
+  "lastUpdated": "2026-08-21",
   "language": "en",
   "categories": [
     {
@@ -12,7 +12,7 @@
           "year": "2026",
           "description": "A newly submitted horror short from filmmaker Carlos Alejandro Forcada, starring Ariel Cicciari and Claudia Nevot.",
           "poster": "pkg:/images/promo/advent-poster-portrait.jpg",
-          "streamUrl": "",
+          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/Advent_2026_small.mp4",
           "streamFormat": "mp4"
         },
         {

@@ -21,7 +21,7 @@ sub init()
         m.promoCarousel.observeField("isVideoActive", "onCarouselVideoActiveChanged")
 
         m.promoCarousel.items = [
-            { uri: "pkg:/videos/my-passion-1.mp4", type: "video", label: "My Passion", capTitle: "MY PASSION", capSubtitle: "Watch Our Ad" }
+            { uri: "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/my-passion-1.mp4", type: "video", label: "My Passion", capTitle: "MY PASSION", capSubtitle: "Watch Our Ad" }
             { uri: "pkg:/images/promo/banners/pdl-brand.jpg", type: "image", capTitle: "PARKER DATA LINK", capSubtitle: "Horror. Sci-Fi. Cult Classics." }
             { uri: "pkg:/images/promo/banners/advent-poster.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
             { uri: "pkg:/images/promo/banners/advent-still1.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
@@ -41,8 +41,24 @@ end sub
 ' top of the My Passion video, which read as broken). Browsing is genuinely
 ' unavailable during video playback by design -- the very next key press
 ' skips the video and instantly restores normal browsing.
+' The detail/playback screen took over (or handed back). Park the carousel
+' completely while we're in the background: it owns a Timer and a Video
+' node that would otherwise keep running behind the movie the viewer is
+' actually watching, seize focus via onCarouselVideoActiveChanged, and
+' leave the remote doing nothing.
+sub onScreenActiveChanged()
+    if m.promoCarousel = invalid then return
+    m.promoCarousel.active = m.top.screenActive
+    if m.top.screenActive and not m.promoCarousel.isVideoActive
+        if m.rowList <> invalid then m.rowList.setFocus(true)
+    end if
+end sub
+
 sub onCarouselVideoActiveChanged()
     if m.promoCarousel = invalid then return
+    ' Never touch focus or layout while this screen is in the background --
+    ' DetailScreen is in front and owns the remote.
+    if not m.top.screenActive then return
     if m.promoCarousel.isVideoActive
         m.heroPoster.visible = false
         m.heroTitle.visible  = false

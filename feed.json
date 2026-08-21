@@ -66,7 +66,7 @@
           "year": "2026",
           "description": "A quick promo for the Parker Data Link Roku channel itself -- tap to watch.",
           "poster": "pkg:/images/promo/my-passion-poster.jpg",
-          "streamUrl": "pkg:/videos/my-passion-1.mp4",
+          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/My_Passion_1.mp4",
           "streamFormat": "mp4"
         }
       ]

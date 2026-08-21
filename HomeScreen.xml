@@ -9,6 +9,11 @@
     <interface>
         <field id="content"      type="node" onChange="onContentChanged" />
         <field id="itemSelected" type="node" alwaysNotify="true" />
+        <!-- False whenever another screen (detail/playback) is in front of
+             this one. The promo carousel keeps running on its own Timer
+             even while this screen is hidden, so without this it can start
+             its video, seize focus, and strand the viewer mid-movie. -->
+        <field id="screenActive" type="boolean" value="true" onChange="onScreenActiveChanged" />
     </interface>
 
     <children>

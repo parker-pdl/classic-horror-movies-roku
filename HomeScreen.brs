@@ -8,7 +8,6 @@ sub init()
     m.heroTitle  = m.top.findNode("heroTitle")
     m.heroMeta   = m.top.findNode("heroMeta")
     m.heroDesc   = m.top.findNode("heroDesc")
-    m.heroHint   = m.top.findNode("heroHint")
 
     m.rowList.observeField("rowItemFocused",  "onRowItemFocused")
     m.rowList.observeField("rowItemSelected", "onRowItemSelected")
@@ -49,7 +48,6 @@ sub onCarouselVideoActiveChanged()
         m.heroTitle.visible  = false
         m.heroMeta.visible   = false
         m.heroDesc.visible   = false
-        m.heroHint.visible   = false
         m.rowList.visible    = false
         m.promoCarousel.setFocus(true)
     else
@@ -57,7 +55,6 @@ sub onCarouselVideoActiveChanged()
         m.heroTitle.visible  = true
         m.heroMeta.visible   = true
         m.heroDesc.visible   = true
-        m.heroHint.visible   = true
         m.rowList.visible    = true
         m.rowList.setFocus(true)
     end if

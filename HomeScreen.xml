@@ -87,12 +87,20 @@
             translation="[102, 538]" />
 
         <!-- ── Category rows (start ~688, second row peeks; all within safe area) ── -->
+        <!-- vertFocusAnimationStyle MUST be fixedFocus here.
+             With floatingFocus the list does not scroll while focus moves
+             between the rendered rows, and since row 1 renders below the
+             1080px screen, pressing Down simply moved focus off-screen:
+             the navigation sound played but nothing visibly moved, and the
+             other 9 categories were unreachable. fixedFocus pins the
+             focused row at the RowList's own y and scrolls the content
+             beneath it, so every Down press produces real movement. -->
         <RowList id="rowList"
-            translation="[100, 688]"
+            translation="[100, 640]"
             itemSize="[1700, 338]"
             rowItemSize="[[200, 300]]"
             numRows="2"
-            itemSpacing="[0, 28]"
+            itemSpacing="[0, 20]"
             rowItemSpacing="[[22, 0]]"
             showRowLabel="true"
             rowLabelOffset="[[0, 4]]"
@@ -100,7 +108,7 @@
             rowLabelColor="0xFFFFFFFF"
             drawFocusFeedback="false"
             rowFocusAnimationStyle="fixedFocusWrap"
-            vertFocusAnimationStyle="floatingFocus"
+            vertFocusAnimationStyle="fixedFocus"
             itemComponentName="PosterItem" />
     </children>
 

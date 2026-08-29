@@ -10,10 +10,11 @@
           "id": "advent-2026",
           "title": "Advent",
           "year": "2026",
-          "description": "A newly submitted horror short from filmmaker Carlos Alejandro Forcada, starring Ariel Cicciari and Claudia Nevot. Streaming setup is in progress — check back soon.",
+          "description": "A horror short from filmmaker Carlos Alejandro Forcada, starring Ariel Cicciari and Claudia Nevot.",
           "poster": "pkg:/images/promo/advent-poster-portrait.jpg",
-          "streamUrl": "",
-          "streamFormat": "mp4"
+          "streamUrl": "https://video.parkerdatalink.com/Advent_2026_small.mp4",
+          "streamFormat": "mp4",
+          "rights": "Used with permission of the filmmaker"
         },
         {
           "id": "other-lily-2015",
@@ -52,21 +53,12 @@
           "streamFormat": "hls"
         },
         {
-          "id": "scp-096-2020",
-          "title": "096 - SCP Short Film",
-          "year": "2020",
-          "description": "After a terrifying monster escapes from the SCP Foundation, an inspector interviews the doctor responsible for containing it.",
-          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/scp-096-2020.jpg",
-          "streamUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/096_-_SCP_Short_Film.webm",
-          "streamFormat": "webm"
-        },
-        {
           "id": "my-passion-promo-2026",
           "title": "My Passion (Watch Our Ad)",
           "year": "2026",
           "description": "A quick promo for the Parker Data Link Roku channel itself -- tap to watch.",
           "poster": "pkg:/images/promo/my-passion-poster.jpg",
-          "streamUrl": "pkg:/videos/my-passion-1.mp4",
+          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/my-passion-1.mp4",
           "streamFormat": "mp4"
         }
       ]

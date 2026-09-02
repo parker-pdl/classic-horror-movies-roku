@@ -1,82 +1,26 @@
 ' =============================================================================
-' HomeScreen.brs — RowList wiring, spotlight hero updates, selection bubbling
+' HomeScreen.brs — Focused poster fills background; no carousel.
 ' =============================================================================
 
 sub init()
-    m.rowList    = m.top.findNode("rowList")
-    m.heroPoster = m.top.findNode("heroPoster")
-    m.heroTitle  = m.top.findNode("heroTitle")
-    m.heroMeta   = m.top.findNode("heroMeta")
-    m.heroDesc   = m.top.findNode("heroDesc")
+    m.rowList   = m.top.findNode("rowList")
+    m.bgPoster  = m.top.findNode("bgPoster")
+    m.heroTitle = m.top.findNode("heroTitle")
+    m.heroMeta  = m.top.findNode("heroMeta")
+    m.heroDesc  = m.top.findNode("heroDesc")
 
     m.rowList.observeField("rowItemFocused",  "onRowItemFocused")
     m.rowList.observeField("rowItemSelected", "onRowItemSelected")
-
-    ' ── Promo carousel wiring ────────────────────────────────────────────
-    m.promoCarousel = m.top.findNode("promoCarousel")
-    if m.promoCarousel <> invalid
-        ' Register the focus-handoff observer BEFORE assigning items -- item[0]
-        ' is now the My Passion video, so we must not miss its very first
-        ' isVideoActive change (the carousel auto-plays it on load).
-        m.promoCarousel.observeField("isVideoActive", "onCarouselVideoActiveChanged")
-
-        m.promoCarousel.items = [
-            { uri: "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/my-passion-1.mp4", type: "video", label: "My Passion", capTitle: "MY PASSION", capSubtitle: "Watch Our Ad" }
-            { uri: "pkg:/images/promo/banners/pdl-brand.jpg", type: "image", capTitle: "PARKER DATA LINK", capSubtitle: "Horror. Sci-Fi. Cult Classics." }
-            { uri: "pkg:/images/promo/banners/advent-poster.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
-            { uri: "pkg:/images/promo/banners/advent-still1.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
-            { uri: "pkg:/images/promo/banners/advent-still2.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
-            { uri: "pkg:/images/promo/banners/advent-poster.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
-            { uri: "pkg:/images/promo/banners/advent-still3.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
-            { uri: "pkg:/images/promo/banners/advent-still4.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
-            { uri: "pkg:/images/promo/banners/advent-still5.jpg", type: "image", capTitle: "ADVENT", capSubtitle: "A NEW HORROR SHORT  •  NOW STREAMING" }
-        ]
-    end if
 end sub
 
-' While the carousel's video item is playing, it takes over the full screen:
-' hand it focus (so any remote button reaches its onKeyEvent for skip/mute)
-' AND hide the hero panel + row list so they don't visually collide with
-' unrelated video content (this was showing "Advent" details/focus ring on
-' top of the My Passion video, which read as broken). Browsing is genuinely
-' unavailable during video playback by design -- the very next key press
-' skips the video and instantly restores normal browsing.
-' The detail/playback screen took over (or handed back). Park the carousel
-' completely while we're in the background: it owns a Timer and a Video
-' node that would otherwise keep running behind the movie the viewer is
-' actually watching, seize focus via onCarouselVideoActiveChanged, and
-' leave the remote doing nothing.
 sub onScreenActiveChanged()
-    if m.promoCarousel = invalid then return
-    m.promoCarousel.active = m.top.screenActive
-    if m.top.screenActive and not m.promoCarousel.isVideoActive
-        if m.rowList <> invalid then m.rowList.setFocus(true)
-    end if
-end sub
-
-sub onCarouselVideoActiveChanged()
-    if m.promoCarousel = invalid then return
-    ' Never touch focus or layout while this screen is in the background --
-    ' DetailScreen is in front and owns the remote.
-    if not m.top.screenActive then return
-    if m.promoCarousel.isVideoActive
-        m.heroPoster.visible = false
-        m.heroTitle.visible  = false
-        m.heroMeta.visible   = false
-        m.heroDesc.visible   = false
-        m.rowList.visible    = false
-        m.promoCarousel.setFocus(true)
-    else
-        m.heroPoster.visible = true
-        m.heroTitle.visible  = true
-        m.heroMeta.visible   = true
-        m.heroDesc.visible   = true
-        m.rowList.visible    = true
+    ' Called by MainScene when this screen comes back into the foreground.
+    ' setFocus on the Group doesn't reach the RowList — must be explicit.
+    if m.top.screenActive and m.rowList <> invalid
         m.rowList.setFocus(true)
     end if
 end sub
 
-' Bind the ContentNode tree and seed the hero with the first title
 sub onContentChanged()
     m.rowList.content = m.top.content
     updateHero([0, 0])
@@ -85,17 +29,9 @@ end sub
 sub onRowItemFocused()
     idx = m.rowList.rowItemFocused
     updateHero(idx)
-
-    ' Pause the carousel (stop auto-advance, stop any video/audio) as soon as
-    ' the user scrolls down away from the top row -- it shouldn't keep
-    ' rotating or suddenly play sound while they're browsing further down.
-    ' Resumes automatically if they scroll back up to row 0.
-    if m.promoCarousel <> invalid and idx <> invalid and idx.count() >= 1
-        m.promoCarousel.active = (idx[0] = 0)
-    end if
 end sub
 
-' Refresh the spotlight panel from the focused [rowIndex, itemIndex]
+' Update background poster and hero text to match the focused item
 sub updateHero(idx as Dynamic)
     if idx = invalid or idx.count() < 2 then return
     content = m.top.content
@@ -105,9 +41,11 @@ sub updateHero(idx as Dynamic)
     item = cat.getChild(idx[1])
     if item = invalid then return
 
-    m.heroTitle.text  = item.title
-    m.heroDesc.text   = item.description
-    if item.HDPosterUrl <> invalid then m.heroPoster.uri = item.HDPosterUrl
+    m.heroTitle.text = item.title
+    m.heroDesc.text  = item.description
+    if item.HDPosterUrl <> invalid and item.HDPosterUrl <> ""
+        m.bgPoster.uri = item.HDPosterUrl
+    end if
 
     yr   = item.year
     meta = cat.title
@@ -115,7 +53,6 @@ sub updateHero(idx as Dynamic)
     m.heroMeta.text = meta
 end sub
 
-' Open the detail screen for the chosen [rowIndex, itemIndex]
 sub onRowItemSelected(event as Dynamic)
     idx = event.getData()
     if idx <> invalid and idx.count() = 2
@@ -131,5 +68,5 @@ sub onRowItemSelected(event as Dynamic)
 end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
-    return false   ' Back on the home screen exits the channel (default)
+    return false   ' Back exits the channel (OS default)
 end function

@@ -21,7 +21,24 @@ sub init()
 
     m.isPlaying = false
 
+    ' ── Pre-roll promo ──────────────────────────────────────────────────────
+    ' Swap the promo by overwriting this ONE R2 object -- no rebuild, no feed
+    ' change, no resubmission:  mp4-media-and-videos/promos/preroll.mp4
+    ' Must be H.264 video + AAC audio in an MP4 container.
+    m.PREROLL_URL   = "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/promos/preroll.mp4"
+    m.prerollActive = false
+
+    if m.global <> invalid and m.global.hasField("prerollShown") = false
+        m.global.addFields({ prerollShown: false })
+    end if
+
     m.videoPlayer.observeField("state", "onVideoStateChanged")
+    m.videoPlayer.observeField("contentIndex", "onContentIndexChanged")
+end sub
+
+' Once the player advances past the promo, stop swallowing skip keys.
+sub onContentIndexChanged()
+    if m.videoPlayer.contentIndex > 0 then m.prerollActive = false
 end sub
 
 ' ─── Populate UI from the selected ContentNode ──────────────────────────────
@@ -47,13 +64,19 @@ sub onItemContentChanged()
     ' Stream readiness
     streamUrl = item.getField("streamUrl")
     if streamUrl <> invalid and streamUrl <> ""
-        m.sourceLabel.text = "Public domain • Ready to play"
+        m.sourceLabel.text = ""
     else
         m.sourceLabel.text = "No stream URL configured for this title."
     end if
 
     m.statusLabel.text = ""
     m.playButton.setFocus(true)
+
+    ' Deep-link launches jump straight into playback instead of waiting on
+    ' the Play button.
+    if m.top.autoPlay
+        playVideo()
+    end if
 end sub
 
 ' ─── Playback ───────────────────────────────────────────────────────────────
@@ -76,12 +99,31 @@ sub playVideo()
         end if
     end if
 
-    videoContent = createObject("roSGNode", "ContentNode")
-    videoContent.url          = streamUrl
-    videoContent.title        = item.title
-    videoContent.streamFormat = streamFormat
+    ' Show the promo once per channel session, then go straight to the film.
+    ' Deep-link launches skip it entirely.
+    usePreroll = false
+    if m.global <> invalid and m.global.hasField("prerollShown") and m.top.autoPlay <> true
+        usePreroll = (m.global.prerollShown = false)
+    end if
 
-    m.videoPlayer.content = videoContent
+    playlist = createObject("roSGNode", "ContentNode")
+
+    if usePreroll
+        promo = playlist.createChild("ContentNode")
+        promo.url          = m.PREROLL_URL
+        promo.title        = "Parker Data Link"
+        promo.streamFormat = "mp4"
+        m.global.prerollShown = true
+    end if
+
+    feature = playlist.createChild("ContentNode")
+    feature.url          = streamUrl
+    feature.title        = item.title
+    feature.streamFormat = streamFormat
+
+    m.prerollActive = usePreroll
+    m.videoPlayer.contentIsPlaylist = true
+    m.videoPlayer.content = playlist
     m.videoPlayer.visible = true
     m.bufferingOverlay.visible = true
     m.bufferingLabel.text = "Loading " + item.title + "..."
@@ -95,6 +137,7 @@ sub onVideoStateChanged()
     state = m.videoPlayer.state
     if state = "playing"
         m.bufferingOverlay.visible = false
+        m.top.playbackStarted = true
     else if state = "buffering"
         m.bufferingOverlay.visible = true
         m.bufferingLabel.text = "Buffering..."
@@ -117,6 +160,7 @@ sub stopVideo()
     m.videoPlayer.visible = false
     m.bufferingOverlay.visible = false
     m.isPlaying = false
+    m.prerollActive = false
     m.playButton.setFocus(true)
 end sub
 
@@ -127,6 +171,14 @@ end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
     if press
+        ' During the promo, swallow seek keys only. Back and Home stay live --
+        ' blocking those fails Roku certification.
+        if m.isPlaying and m.prerollActive = true
+            if key = "fastforward" or key = "rewind" or key = "right" or key = "left"
+                return true
+            end if
+        end if
+
         if key = "OK"
             if m.playButton.hasFocus() and not m.isPlaying
                 m.playBtnBg.color = "0xB0060FFF"

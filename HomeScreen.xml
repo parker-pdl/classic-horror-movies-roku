@@ -1,102 +1,67 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- =======================================================================
-     HomeScreen — Netflix-style browse screen (overscan-safe layout).
-     All content kept inside the Roku title-safe area (~96px side / ~60px
-     top-bottom margins) so nothing is clipped by TV overscan.
+     HomeScreen — Focused-poster-as-background layout.
+     The currently highlighted film's poster fills the entire screen;
+     overlays keep branding and hero text readable.
      ======================================================================= -->
 <component name="HomeScreen" extends="Group" initialFocus="rowList">
 
     <interface>
         <field id="content"      type="node" onChange="onContentChanged" />
         <field id="itemSelected" type="node" alwaysNotify="true" />
-        <!-- False whenever another screen (detail/playback) is in front of
-             this one. The promo carousel keeps running on its own Timer
-             even while this screen is hidden, so without this it can start
-             its video, seize focus, and strand the viewer mid-movie. -->
         <field id="screenActive" type="boolean" value="true" onChange="onScreenActiveChanged" />
     </interface>
 
     <children>
-        <!-- Full-bleed backdrop — true near-black (Netflix-style) so the
-             neon accents pop cleanly. -->
+        <!-- Full-bleed focused-poster background (uri set dynamically) -->
         <Poster id="bgPoster"
-            uri="pkg:/images/home_bg.jpg"
             width="1920" height="1080"
             loadDisplayMode="scaleToZoom" />
-        <Rectangle width="1920" height="1080" color="0x141414E6" />
-        <Rectangle width="1920" height="740" translation="[0, 360]" color="0x0D0D0DF2" />
 
-        <!-- ── Promo carousel (auto-rotating Advent + PDL brand art, top of
-             screen, 360px tall). Focus stays on rowList at all times except
-             during the "My Passion" video, which the carousel takes focus
-             for so any remote button can skip it. ────────────────────── -->
-        <PromoCarousel id="promoCarousel"
-            translation="[0, 0]"
-            promoTitle="ADVENT"
-            promoSubtitle="A NEW HORROR SHORT  •  NOW STREAMING" />
+        <!-- Dark vignette so text is always legible -->
+        <Rectangle width="1920" height="1080" color="0x00000099" />
+        <!-- Heavier bottom third where rows sit -->
+        <Rectangle width="1920" height="500" translation="[0, 580]" color="0x000000BB" />
 
-        <!-- ── Channel branding — overlaid on the carousel itself (top-left,
-             on a translucent strip so it reads over any rotating image)
-             instead of stacked below it, to keep the layout compact. ──── -->
-        <Rectangle width="1920" height="104" translation="[0, 0]" color="0x000000A6" />
-        <Label id="channelTitleGlow"
-            text="CLASSIC HORROR MOVIES"
-            font="font:LargeBoldSystemFont"
-            color="0xFF1E3E4D"
-            horizAlign="left"
-            width="1156" height="64"
-            translation="[97, 21]" />
+        <!-- Channel branding top-left -->
         <Label id="channelTitle"
             text="CLASSIC HORROR MOVIES"
             font="font:LargeBoldSystemFont"
             color="0xFF1E3EFF"
             horizAlign="left"
             width="1150" height="58"
-            translation="[100, 24]" />
+            translation="[100, 30]" />
         <Label id="bylineLabel"
             text="by ParkerDataLink.com"
             font="font:MediumSystemFont"
             color="0xE8E8E8FF"
             horizAlign="left"
             width="700" height="38"
-            translation="[102, 66]" />
+            translation="[102, 78]" />
 
-        <!-- ── Spotlight hero (reflects the focused item) ──────────────────── -->
-        <Poster id="heroPoster"
-            width="200" height="300"
-            loadDisplayMode="scaleToZoom"
-            failedBitmapUri="pkg:/images/poster_fallback.jpg"
-            translation="[1560, 396]" />
-
+        <!-- Hero info mid-screen -->
         <Label id="heroTitle"
             font="font:LargeBoldSystemFont"
             color="0xFFFFFFFF"
             maxLines="2" wrap="true"
-            width="1420" height="96"
-            translation="[100, 396]" />
+            width="1600" height="96"
+            translation="[100, 200]" />
         <Label id="heroMeta"
             font="font:SmallBoldSystemFont"
             color="0xFF2E9DFF"
-            width="1000" height="34"
-            translation="[102, 496]" />
+            width="1200" height="34"
+            translation="[102, 310]" />
         <Label id="heroDesc"
             font="font:MediumSystemFont"
             color="0xE0E0E0FF"
-            maxLines="2" wrap="true"
-            width="1420" height="74"
-            translation="[102, 538]" />
+            maxLines="3" wrap="true"
+            width="1400" height="110"
+            translation="[102, 356]" />
 
-        <!-- ── Category rows (start ~688, second row peeks; all within safe area) ── -->
-        <!-- vertFocusAnimationStyle MUST be fixedFocus here.
-             With floatingFocus the list does not scroll while focus moves
-             between the rendered rows, and since row 1 renders below the
-             1080px screen, pressing Down simply moved focus off-screen:
-             the navigation sound played but nothing visibly moved, and the
-             other 9 categories were unreachable. fixedFocus pins the
-             focused row at the RowList's own y and scrolls the content
-             beneath it, so every Down press produces real movement. -->
+        <!-- Category rows -->
+        <!-- vertFocusAnimationStyle MUST stay fixedFocus or scrolling breaks -->
         <RowList id="rowList"
-            translation="[100, 640]"
+            translation="[100, 520]"
             itemSize="[1700, 338]"
             rowItemSize="[[200, 300]]"
             numRows="2"

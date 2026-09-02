@@ -63,9 +63,21 @@ sub showImageItem(item as Object)
 end sub
 
 sub startTimer()
+    if m.top.active = false then return
     if m.items = invalid or m.items.count() <= 1 then return
     m.timer.duration = m.top.intervalSecs
     m.timer.control  = "start"
+end sub
+
+' The parent screen flips "active" to false as soon as the user scrolls down
+' away from the carousel, and back to true when they scroll back up to it.
+sub onActiveChanged()
+    if m.top.active
+        if not m.top.isVideoActive then startTimer()
+    else
+        m.timer.control = "stop"
+        if m.top.isVideoActive then stopVideo()
+    end if
 end sub
 
 sub onTimerFired()
@@ -106,6 +118,10 @@ sub startVideoItem(item as Object)
 
     content = createObject("roSGNode", "ContentNode")
     content.url = item.uri
+    ' The promo video is served from Cloudflare R2 now rather than bundled
+    ' in the package, so streamFormat has to be explicit -- a bare pkg:/
+    ' path could get away without it, an http(s) URL generally cannot.
+    content.streamFormat = "mp4"
     if item.label <> invalid then content.title = item.label
 
     m.videoPlayer.content = content

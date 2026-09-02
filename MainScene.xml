@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- =======================================================================
      MainScene — root SceneGraph scene.
-     Orchestrates screen transitions: SplashScreen -> HomeScreen -> DetailScreen
-     and kicks off the remote content feed load via a ContentLoader Task.
+     Orchestrates: SplashScreen -> IntroVideo -> HomeScreen -> DetailScreen
      ======================================================================= -->
 <component name="MainScene" extends="Scene" initialFocus="splashScreen">
 
     <interface>
-        <!-- alwaysNotify so a repeat deep link to the SAME contentId (e.g. a
-             second roInputEvent while the channel is already running) still
-             re-triggers navigation instead of being ignored as a no-op
-             field write. -->
         <field id="deepLinkContentId" type="string" alwaysNotify="true" onChange="onDeepLinkChanged" />
         <field id="deepLinkMediaType" type="string" />
     </interface>
@@ -19,6 +14,11 @@
         <SplashScreen  id="splashScreen"  visible="true"  />
         <HomeScreen    id="homeScreen"    visible="false" />
         <DetailScreen  id="detailScreen"  visible="false" />
+        <!-- Full-screen intro video played once on launch after the splash -->
+        <Video id="introVideo"
+            width="1920" height="1080"
+            translation="[0, 0]"
+            visible="false" />
     </children>
 
     <script type="text/brightscript" uri="MainScene.brs" />

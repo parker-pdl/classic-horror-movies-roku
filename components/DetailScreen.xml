@@ -9,6 +9,14 @@
     <interface>
         <field id="itemContent" type="node"    onChange="onItemContentChanged" />
         <field id="goBack"      type="boolean"  value="false" alwaysNotify="true" />
+        <!-- Set true when this screen is opened via a deep link -- starts
+             playback automatically instead of waiting for OK on the Play
+             button. -->
+        <field id="autoPlay"      type="boolean" value="false" />
+        <!-- Fires (alwaysNotify) the first time video playback actually
+             begins, so the deep-link launch path can signal the
+             "AppLaunchComplete" beacon at the correct moment. -->
+        <field id="playbackStarted" type="boolean" value="false" alwaysNotify="true" />
     </interface>
 
     <children>

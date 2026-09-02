@@ -18,6 +18,12 @@
         <field id="muted"         type="boolean" value="false" />
         <field id="skipVideo"     type="boolean" alwaysNotify="true" onChange="onSkipVideo" />
         <field id="toggleMute"    type="boolean" alwaysNotify="true" onChange="onToggleMute" />
+
+        <!-- Set false once the user scrolls away from the carousel (down into
+             the row list) so it stops auto-advancing / doesn't start playing
+             video audio while they're browsing elsewhere. Set true again when
+             they scroll back up to it. -->
+        <field id="active" type="boolean" value="true" onChange="onActiveChanged" />
     </interface>
 
     <children>

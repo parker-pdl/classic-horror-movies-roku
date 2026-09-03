@@ -14,11 +14,7 @@
         <SplashScreen  id="splashScreen"  visible="true"  />
         <HomeScreen    id="homeScreen"    visible="false" />
         <DetailScreen  id="detailScreen"  visible="false" />
-        <!-- Full-screen intro video played once on launch after the splash -->
-        <Video id="introVideo"
-            width="1920" height="1080"
-            translation="[0, 0]"
-            visible="false" />
+
     </children>
 
     <script type="text/brightscript" uri="MainScene.brs" />

@@ -1,27 +1,19 @@
 ' =============================================================================
 ' MainScene.brs — screen orchestrator + remote feed bootstrap
 '
-' Flow: SplashScreen -> HomeScreen (interactive, beacon fires) -> IntroVideo
-'       overlay on top of home -> HomeScreen (overlay removed)
+' Flow: SplashScreen -> HomeScreen (interactive, beacon fires)
 '
-' Req 3.2 fix: AppLaunchComplete is signaled as soon as HomeScreen is ready,
-' BEFORE the intro video starts.  The intro plays as a visual overlay and does
-' NOT block interactivity.
+' Req 3.2: AppLaunchComplete fires as soon as HomeScreen is ready.
 ' =============================================================================
 
 function FEED_URL() as string
     return "https://roku-feed.parkerdatalinktv.workers.dev/feed.json"
 end function
 
-function INTRO_URL() as string
-    return "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/short%20trailer%20PDL.mp4"
-end function
-
 sub init()
     m.splashScreen = m.top.findNode("splashScreen")
     m.homeScreen   = m.top.findNode("homeScreen")
     m.detailScreen = m.top.findNode("detailScreen")
-    m.introVideo   = m.top.findNode("introVideo")
 
     m.splashDone        = false
     m.homeRevealed      = false
@@ -36,7 +28,6 @@ sub init()
             m.detailScreen.observeField("goBack", "onDetailBack")
             m.detailScreen.observeField("playbackStarted", "onDeepLinkPlaybackStarted")
         end if
-        if m.introVideo <> invalid then m.introVideo.observeField("state", "onIntroStateChanged")
     catch e
         print "[MainScene] observer wiring failed: "; e.message
     end try
@@ -86,34 +77,12 @@ sub onContentLoaded()
     end if
 end sub
 
-' ─── Splash -> Home (interactive) -> Intro overlay ────────────────────────────
+' ─── Splash -> Home ──────────────────────────────────────────────────────────
 
 sub onSplashComplete()
     m.splashDone = true
     if m.detailScreen <> invalid and m.detailScreen.visible then return
     revealHome()
-    playIntroOverlay()
-end sub
-
-sub playIntroOverlay()
-    if m.introVideo = invalid then return
-    c = createObject("roSGNode", "ContentNode")
-    c.url = INTRO_URL()
-    c.streamFormat = "mp4"
-    m.introVideo.content = c
-    m.introVideo.visible = true
-    m.introVideo.setFocus(true)
-    m.introVideo.control = "play"
-end sub
-
-sub onIntroStateChanged()
-    if m.introVideo = invalid then return
-    s = m.introVideo.state
-    if s = "finished" or s = "error" or s = "stopped"
-        m.introVideo.control = "stop"
-        m.introVideo.visible = false
-        ' focus already lives on m.rowList via onScreenActiveChanged — no setFocus needed
-    end if
 end sub
 
 sub revealHome()
@@ -144,10 +113,6 @@ function tryResolveDeepLink(id as String) as Boolean
     if item = invalid then return false
     m.pendingDeepLinkId = ""
     if m.splashScreen <> invalid then m.splashScreen.visible = false
-    if m.introVideo <> invalid
-        m.introVideo.control = "stop"
-        m.introVideo.visible = false
-    end if
     if m.homeScreen <> invalid
         m.homeScreen.screenActive = false
         m.homeScreen.visible = false

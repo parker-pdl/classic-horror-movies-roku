@@ -67,12 +67,12 @@
       "title": "New & Submitted Films",
       "items": [
         {
-          "id": "advent-2026",
+          "id": "advent-2026-new",
           "title": "Advent",
           "year": "2026",
-          "description": "A newly submitted horror short from filmmaker Carlos Alejandro Forcada, starring Ariel Cicciari and Claudia Nevot. Streaming setup is in progress — check back soon.",
+          "description": "A horror short from filmmaker Carlos Alejandro Forcada, starring Ariel Cicciari and Claudia Nevot.",
           "poster": "pkg:/images/promo/advent-poster-portrait.jpg",
-          "streamUrl": "",
+          "streamUrl": "https://video.parkerdatalink.com/Advent_2026_small.mp4",
           "streamFormat": "mp4"
         }
       ]

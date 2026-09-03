@@ -135,15 +135,6 @@
           "streamFormat": "mp4"
         },
         {
-          "id": "scp-096-2020",
-          "title": "096 - SCP Short Film",
-          "year": "2020",
-          "description": "After a terrifying monster escapes from the SCP Foundation, an inspector interviews the doctor responsible for containing it.",
-          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/scp-096-2020.jpg",
-          "streamUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/096_-_SCP_Short_Film.webm",
-          "streamFormat": "webm"
-        },
-        {
           "id": "there-is-no-antimemetics-2024",
           "title": "There Is No Antimemetics Division",
           "year": "2024",
@@ -232,15 +223,6 @@
           "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/backrooms-level-3-2022.jpg",
           "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/The-Backrooms-Level-3-_Found-Footage.mp4",
           "streamFormat": "mp4"
-        },
-        {
-          "id": "sunshine-2013",
-          "title": "Sunshine",
-          "year": "2013",
-          "description": "A stop-motion horror short that appeared in multiple genre and horror film festivals.",
-          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/sunshine-2013.jpg",
-          "streamUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1a/ParkerWinans_-_Sunshine.webm",
-          "streamFormat": "webm"
         }
       ]
     },

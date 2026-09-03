@@ -1,6 +1,12 @@
 ' =============================================================================
 ' MainScene.brs — screen orchestrator + remote feed bootstrap
-' Flow: SplashScreen -> IntroVideo -> HomeScreen <-> DetailScreen
+'
+' Flow: SplashScreen -> HomeScreen (interactive, beacon fires) -> IntroVideo
+'       overlay on top of home -> HomeScreen (overlay removed)
+'
+' Req 3.2 fix: AppLaunchComplete is signaled as soon as HomeScreen is ready,
+' BEFORE the intro video starts.  The intro plays as a visual overlay and does
+' NOT block interactivity.
 ' =============================================================================
 
 function FEED_URL() as string
@@ -17,14 +23,15 @@ sub init()
     m.detailScreen = m.top.findNode("detailScreen")
     m.introVideo   = m.top.findNode("introVideo")
 
-    m.splashDone   = false
-    m.contentReady = false
+    m.splashDone        = false
+    m.homeRevealed      = false
+    m.contentReady      = false
     m.launchBeaconFired = false
     m.pendingDeepLinkId = ""
 
     try
         if m.splashScreen <> invalid then m.splashScreen.observeField("splashComplete", "onSplashComplete")
-        if m.homeScreen <> invalid then m.homeScreen.observeField("itemSelected", "onItemSelected")
+        if m.homeScreen <> invalid   then m.homeScreen.observeField("itemSelected", "onItemSelected")
         if m.detailScreen <> invalid
             m.detailScreen.observeField("goBack", "onDetailBack")
             m.detailScreen.observeField("playbackStarted", "onDeepLinkPlaybackStarted")
@@ -44,11 +51,10 @@ sub init()
 end sub
 
 sub onFailsafeFired()
-    if m.splashScreen <> invalid and m.splashScreen.visible
-        print "[MainScene] FAILSAFE: skipping to home"
-        m.splashDone = true
-        revealHome()
-    end if
+    if m.homeRevealed then return
+    print "[MainScene] FAILSAFE: skipping to home"
+    m.splashDone = true
+    revealHome()
 end sub
 
 ' -----------------------------------------------------------------------------
@@ -76,24 +82,21 @@ sub onContentLoaded()
             m.pendingDeepLinkId = ""
         end if
         if m.detailScreen <> invalid and m.detailScreen.visible then return
-        if m.splashDone then playIntro()
+        if m.homeRevealed then return
     end if
 end sub
 
-' ─── Splash -> Intro -> Home ─────────────────────────────────────────────────
+' ─── Splash -> Home (interactive) -> Intro overlay ────────────────────────────
 
 sub onSplashComplete()
     m.splashDone = true
     if m.detailScreen <> invalid and m.detailScreen.visible then return
-    playIntro()
+    revealHome()
+    playIntroOverlay()
 end sub
 
-sub playIntro()
-    if m.introVideo = invalid
-        revealHome()
-        return
-    end if
-    if m.splashScreen <> invalid then m.splashScreen.visible = false
+sub playIntroOverlay()
+    if m.introVideo = invalid then return
     c = createObject("roSGNode", "ContentNode")
     c.url = INTRO_URL()
     c.streamFormat = "mp4"
@@ -101,28 +104,26 @@ sub playIntro()
     m.introVideo.visible = true
     m.introVideo.setFocus(true)
     m.introVideo.control = "play"
-    if m.failsafeTimer <> invalid then m.failsafeTimer.control = "stop"
 end sub
 
-' Fired when introVideo state changes (finished / stopped / error -> go home)
 sub onIntroStateChanged()
     if m.introVideo = invalid then return
     s = m.introVideo.state
     if s = "finished" or s = "error" or s = "stopped"
         m.introVideo.control = "stop"
         m.introVideo.visible = false
-        revealHome()
+        ' focus already lives on m.rowList via onScreenActiveChanged — no setFocus needed
     end if
 end sub
 
 sub revealHome()
+    m.homeRevealed = true
     if m.splashScreen <> invalid then m.splashScreen.visible = false
-    if m.introVideo <> invalid then m.introVideo.visible = false
     if m.detailScreen <> invalid then m.detailScreen.visible = false
     if m.homeScreen <> invalid
-        m.homeScreen.screenActive = true
+        m.homeScreen.screenActive = true  ' triggers onScreenActiveChanged -> rowList.setFocus(true)
         m.homeScreen.visible = true
-        m.homeScreen.setFocus(true)
+        ' do NOT call setFocus(true) on the Group — that overrides rowList focus
     end if
     if m.failsafeTimer <> invalid then m.failsafeTimer.control = "stop"
     if m.pendingDeepLinkId = "" then signalLaunchCompleteOnce()
@@ -143,7 +144,10 @@ function tryResolveDeepLink(id as String) as Boolean
     if item = invalid then return false
     m.pendingDeepLinkId = ""
     if m.splashScreen <> invalid then m.splashScreen.visible = false
-    if m.introVideo <> invalid then m.introVideo.visible = false
+    if m.introVideo <> invalid
+        m.introVideo.control = "stop"
+        m.introVideo.visible = false
+    end if
     if m.homeScreen <> invalid
         m.homeScreen.screenActive = false
         m.homeScreen.visible = false
@@ -200,8 +204,8 @@ end sub
 sub onDetailBack()
     if m.detailScreen <> invalid then m.detailScreen.visible = false
     if m.homeScreen <> invalid
-        m.homeScreen.screenActive = true
+        m.homeScreen.screenActive = true  ' triggers onScreenActiveChanged -> rowList.setFocus(true)
         m.homeScreen.visible = true
-        m.homeScreen.setFocus(true)
+        ' do NOT call setFocus(true) on the Group — that overrides rowList focus
     end if
 end sub

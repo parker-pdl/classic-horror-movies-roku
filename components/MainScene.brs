@@ -112,7 +112,7 @@ sub onIntroStateChanged()
     if s = "finished" or s = "error" or s = "stopped"
         m.introVideo.control = "stop"
         m.introVideo.visible = false
-        if m.homeScreen <> invalid then m.homeScreen.setFocus(true)
+        ' focus already lives on m.rowList via onScreenActiveChanged — no setFocus needed
     end if
 end sub
 
@@ -121,9 +121,9 @@ sub revealHome()
     if m.splashScreen <> invalid then m.splashScreen.visible = false
     if m.detailScreen <> invalid then m.detailScreen.visible = false
     if m.homeScreen <> invalid
-        m.homeScreen.screenActive = true
+        m.homeScreen.screenActive = true  ' triggers onScreenActiveChanged -> rowList.setFocus(true)
         m.homeScreen.visible = true
-        m.homeScreen.setFocus(true)
+        ' do NOT call setFocus(true) on the Group — that overrides rowList focus
     end if
     if m.failsafeTimer <> invalid then m.failsafeTimer.control = "stop"
     if m.pendingDeepLinkId = "" then signalLaunchCompleteOnce()
@@ -204,8 +204,8 @@ end sub
 sub onDetailBack()
     if m.detailScreen <> invalid then m.detailScreen.visible = false
     if m.homeScreen <> invalid
-        m.homeScreen.screenActive = true
+        m.homeScreen.screenActive = true  ' triggers onScreenActiveChanged -> rowList.setFocus(true)
         m.homeScreen.visible = true
-        m.homeScreen.setFocus(true)
+        ' do NOT call setFocus(true) on the Group — that overrides rowList focus
     end if
 end sub

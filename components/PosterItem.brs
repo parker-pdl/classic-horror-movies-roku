@@ -11,7 +11,7 @@ sub init()
     m.cardBg      = m.top.findNode("cardBg")
 
     ' Scale from the card's centre so focus growth is symmetric
-    m.top.scaleRotateCenter = [100, 150]
+    m.top.scaleRotateCenter = [120, 180]
 end sub
 
 sub onItemContentChanged()

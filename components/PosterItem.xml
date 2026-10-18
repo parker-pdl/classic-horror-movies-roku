@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- =======================================================================
      PosterItem — portrait poster card used by the HomeScreen RowList.
-     Fills a 2:3 poster, scales up on focus with a red glow border, and
+     Fills a 2:3 poster, scales up on focus with a neon aqua glow border, and
      reveals the title beneath only when focused (Netflix-style).
      ======================================================================= -->
 <component name="PosterItem" extends="Group">
@@ -12,37 +12,37 @@
     </interface>
 
     <children>
-        <!-- Neon-red glow border (revealed on focus) — outer soft glow + crisp inner ring -->
+        <!-- Neon glow border (revealed on focus) — soft purple glow + crisp aqua ring -->
         <Rectangle id="focusGlow"
-            width="220" height="320"
+            width="260" height="380"
             translation="[-10, -10]"
-            color="0xFF1E3E40"
+            color="0xB44CFF66"
             opacity="0.0" />
         <Rectangle id="focusBorder"
-            width="208" height="308"
+            width="248" height="368"
             translation="[-4, -4]"
-            color="0xFF1E3EFF"
+            color="0x21F3FFFF"
             opacity="0.0" />
 
         <!-- Card backing -->
-        <Rectangle id="cardBg" width="200" height="300" color="0x141414FF" />
+        <Rectangle id="cardBg" width="240" height="360" color="0x140D22FF" />
 
         <!-- Poster art (fills the card) -->
         <Poster id="posterImage"
-            width="200" height="300"
+            width="240" height="360"
             loadDisplayMode="scaleToZoom"
             failedBitmapUri="pkg:/images/poster_fallback.jpg"
             loadingBitmapUri="pkg:/images/poster_fallback.jpg" />
 
         <!-- Bottom gradient + title strip shown on focus -->
-        <Rectangle id="titleScrim" width="200" height="80" translation="[0, 220]" color="0x000000CC" opacity="0.0" />
+        <Rectangle id="titleScrim" width="240" height="90" translation="[0, 270]" color="0x07040DDD" opacity="0.0" />
         <Label id="titleLabel"
             font="font:SmallBoldSystemFont"
             color="0xFFFFFFFF"
             maxLines="2" wrap="true"
             horizAlign="center"
-            width="192" height="70"
-            translation="[4, 232]"
+            width="232" height="76"
+            translation="[4, 282]"
             opacity="0.0" />
     </children>
 

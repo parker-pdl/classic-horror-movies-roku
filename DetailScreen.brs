@@ -1,10 +1,6 @@
 ' =============================================================================
 ' DetailScreen.brs — detail view + in-channel Video-node playback
 ' =============================================================================
-' Plays a direct MP4 / HLS stream (item.streamUrl) with the built-in Roku
-' Video node. Trick-play (pause / FF / RW) is enabled; Back stops playback
-' and returns to the detail view, Back again returns to browse.
-' =============================================================================
 
 sub init()
     m.detailPoster      = m.top.findNode("detailPoster")
@@ -21,24 +17,7 @@ sub init()
 
     m.isPlaying = false
 
-    ' ── Pre-roll promo ──────────────────────────────────────────────────────
-    ' Swap the promo by overwriting this ONE R2 object -- no rebuild, no feed
-    ' change, no resubmission:  mp4-media-and-videos/promos/preroll.mp4
-    ' Must be H.264 video + AAC audio in an MP4 container.
-    m.PREROLL_URL   = "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/promos/preroll.mp4"
-    m.prerollActive = false
-
-    if m.global <> invalid and m.global.hasField("prerollShown") = false
-        m.global.addFields({ prerollShown: false })
-    end if
-
     m.videoPlayer.observeField("state", "onVideoStateChanged")
-    m.videoPlayer.observeField("contentIndex", "onContentIndexChanged")
-end sub
-
-' Once the player advances past the promo, stop swallowing skip keys.
-sub onContentIndexChanged()
-    if m.videoPlayer.contentIndex > 0 then m.prerollActive = false
 end sub
 
 ' ─── Populate UI from the selected ContentNode ──────────────────────────────
@@ -50,7 +29,6 @@ sub onItemContentChanged()
     m.detailTitle.text       = item.title
     m.detailDescription.text = item.description
 
-    ' Build "year • category" from the item's fields and its parent row
     meta = ""
     yr = item.year
     if yr <> invalid and yr <> "" then meta = yr
@@ -61,7 +39,6 @@ sub onItemContentChanged()
     end if
     m.categoryLabel.text = meta
 
-    ' Stream readiness
     streamUrl = item.getField("streamUrl")
     if streamUrl <> invalid and streamUrl <> ""
         m.sourceLabel.text = ""
@@ -72,11 +49,7 @@ sub onItemContentChanged()
     m.statusLabel.text = ""
     m.playButton.setFocus(true)
 
-    ' Deep-link launches jump straight into playback instead of waiting on
-    ' the Play button.
-    if m.top.autoPlay
-        playVideo()
-    end if
+    if m.top.autoPlay then playVideo()
 end sub
 
 ' ─── Playback ───────────────────────────────────────────────────────────────
@@ -99,35 +72,17 @@ sub playVideo()
         end if
     end if
 
-    ' Show the promo once per channel session, then go straight to the film.
-    ' Deep-link launches skip it entirely.
-    usePreroll = false
-    if m.global <> invalid and m.global.hasField("prerollShown") and m.top.autoPlay <> true
-        usePreroll = (m.global.prerollShown = false)
-    end if
+    content = createObject("roSGNode", "ContentNode")
+    content.url          = streamUrl
+    content.title        = item.title
+    content.streamFormat = streamFormat
 
-    playlist = createObject("roSGNode", "ContentNode")
-
-    if usePreroll
-        promo = playlist.createChild("ContentNode")
-        promo.url          = m.PREROLL_URL
-        promo.title        = "Parker Data Link"
-        promo.streamFormat = "mp4"
-        m.global.prerollShown = true
-    end if
-
-    feature = playlist.createChild("ContentNode")
-    feature.url          = streamUrl
-    feature.title        = item.title
-    feature.streamFormat = streamFormat
-
-    m.prerollActive = usePreroll
-    m.videoPlayer.contentIsPlaylist = true
-    m.videoPlayer.content = playlist
-    m.videoPlayer.visible = true
-    m.bufferingOverlay.visible = true
-    m.bufferingLabel.text = "Loading " + item.title + "..."
-    m.videoPlayer.control = "play"
+    m.videoPlayer.contentIsPlaylist = false
+    m.videoPlayer.content           = content
+    m.videoPlayer.visible           = true
+    m.bufferingOverlay.visible      = true
+    m.bufferingLabel.text           = "Loading " + item.title + "..."
+    m.videoPlayer.control           = "play"
     m.videoPlayer.setFocus(true)
     m.isPlaying = true
     m.statusLabel.text = ""
@@ -160,7 +115,6 @@ sub stopVideo()
     m.videoPlayer.visible = false
     m.bufferingOverlay.visible = false
     m.isPlaying = false
-    m.prerollActive = false
     m.playButton.setFocus(true)
 end sub
 
@@ -171,14 +125,6 @@ end sub
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
     if press
-        ' During the promo, swallow seek keys only. Back and Home stay live --
-        ' blocking those fails Roku certification.
-        if m.isPlaying and m.prerollActive = true
-            if key = "fastforward" or key = "rewind" or key = "right" or key = "left"
-                return true
-            end if
-        end if
-
         if key = "OK"
             if m.playButton.hasFocus() and not m.isPlaying
                 m.playBtnBg.color = "0xB0060FFF"

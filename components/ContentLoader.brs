@@ -1,23 +1,15 @@
 ' =============================================================================
 ' ContentLoader.brs — remote feed fetch + ContentNode tree builder (Task thread)
 ' =============================================================================
-' Strategy (TEMPORARILY REVERSED -- see note below):
-'   1. Use the bundled pkg:/feed/feed.json FIRST. The remote feed
-'      (roku-feed.parkerdatalinktv.workers.dev) just proxies this repo's
-'      feed/feed.json from GitHub's main branch -- and pushes to that repo
-'      are currently blocked from the build environment, so the remote
-'      feed is stale (missing Advent, the Top 5 row, everything). Testing
-'      against a sideloaded build was silently pulling old data from the
-'      remote feed instead of what's actually in this package. Bundled-
-'      first guarantees a sideloaded build shows exactly what's in it.
-'   2. Fall back to the remote feed only if the bundled copy is somehow
-'      missing/corrupt.
+' Strategy:
+'   1. Fetch the remote feed FIRST (roku-feed.parkerdatalinktv.workers.dev,
+'      which proxies this repo's feed/feed.json from GitHub main). Editing
+'      feed/feed.json and pushing updates the channel within ~5 minutes,
+'      with no channel rebuild or Roku review.
+'   2. Fall back to the bundled pkg:/feed/feed.json if the remote feed is
+'      unreachable or does not parse into at least one row.
 '   3. Parse the JSON and build a root ContentNode whose children are the
 '      category nodes, each holding the movie nodes the RowList renders.
-'
-'   TODO: once GitHub push access is restored and the live feed is back in
-'   sync, flip this back to remote-first so Parker can update the catalog
-'   from parkerdatalink.com without re-sideloading the channel.
 '
 ' Feed item fields consumed downstream:
 '   title, description, HDPosterUrl (poster), streamUrl (direct MP4/HLS),
@@ -29,25 +21,30 @@ sub init()
 end sub
 
 sub loadFeed()
-    ' 1) Bundled copy first (see note above)
-    jsonText = ReadAsciiFile("pkg:/feed/feed.json")
-    src = "bundled"
+    feed = invalid
+    root = invalid
+    src = "remote"
 
-    ' 2) Fall back to the remote feed only if the bundled copy failed
-    if jsonText = invalid or jsonText = ""
-        url = m.top.feedUrl
-        if url <> invalid and url <> ""
-            jsonText = httpGetString(url, 15000)
-            if jsonText <> invalid and jsonText <> "" then src = "remote"
+    ' 1) Remote feed first (see note above)
+    url = m.top.feedUrl
+    if url <> invalid and url <> ""
+        jsonText = httpGetString(url, 15000)
+        if jsonText <> invalid and jsonText <> ""
+            feed = ParseJson(jsonText)
+            root = buildTree(feed)
         end if
     end if
 
-    feed = invalid
-    if jsonText <> invalid and jsonText <> ""
-        feed = ParseJson(jsonText)
+    ' 2) Bundled copy if the remote feed failed or came back empty
+    if root = invalid or root.getChildCount() = 0
+        src = "bundled"
+        feed = invalid
+        jsonText = ReadAsciiFile("pkg:/feed/feed.json")
+        if jsonText <> invalid and jsonText <> ""
+            feed = ParseJson(jsonText)
+        end if
+        root = buildTree(feed)
     end if
-
-    root = buildTree(feed)
     m.top.source  = src
     if feed <> invalid and root.getChildCount() > 0
         m.top.status = "ok"
@@ -102,6 +99,7 @@ function buildTree(feed as dynamic) as object
             for each it in cat.items
                 if it <> invalid
                     node = catNode.createChild("ContentNode")
+                    node.id          = valStr(it.id, "")
                     node.title       = valStr(it.title, "Untitled")
                     node.description  = valStr(it.description, "")
                     poster = valStr(it.poster, "")

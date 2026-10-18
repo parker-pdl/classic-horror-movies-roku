@@ -25,7 +25,7 @@ end sub
 ' Smoothly scale + reveal the title as the card gains focus (focusPercent 0->1)
 sub onFocusChanged()
     fp = m.top.focusPercent
-    s  = 1.0 + (0.12 * fp)
+    s  = 1.0 + (0.08 * fp)
     m.top.scale = [s, s]
     m.focusBorder.opacity = 1.0 - fp
     m.focusGlow.opacity   = fp

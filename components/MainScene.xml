@@ -14,7 +14,6 @@
         <SplashScreen  id="splashScreen"  visible="true"  />
         <HomeScreen    id="homeScreen"    visible="false" />
         <DetailScreen  id="detailScreen"  visible="false" />
-        <SupportScreen id="supportScreen" visible="false" />
 
     </children>
 

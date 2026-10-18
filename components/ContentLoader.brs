@@ -115,18 +115,6 @@ function buildTree(feed as dynamic) as object
             end for
         end if
     end for
-
-    ' Last row: Settings & Support (opens SupportScreen, not a movie).
-    if root.getChildCount() > 0
-        sup = root.createChild("ContentNode")
-        sup.title = "Settings & Support"
-        tile = sup.createChild("ContentNode")
-        tile.id          = "pdl-support"
-        tile.title       = "Support This Channel"
-        tile.description = "These movies are free. Scan the code on the next screen with your phone to help keep them free."
-        tile.HDPosterUrl = "pkg:/images/support_tile.png"
-        tile.addFields({ streamUrl: "", year: "" })
-    end if
     return root
 end function
 

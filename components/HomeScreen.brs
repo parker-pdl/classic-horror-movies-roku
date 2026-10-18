@@ -8,6 +8,10 @@ sub init()
     m.heroTitle = m.top.findNode("heroTitle")
     m.heroMeta  = m.top.findNode("heroMeta")
     m.heroDesc  = m.top.findNode("heroDesc")
+    m.heroGlow  = []
+    for i = 0 to 3
+        m.heroGlow.push(m.top.findNode("heroGlow" + i.toStr()))
+    end for
 
     m.rowList.observeField("rowItemFocused",  "onRowItemFocused")
     m.rowList.observeField("rowItemSelected", "onRowItemSelected")
@@ -42,6 +46,9 @@ sub updateHero(idx as Dynamic)
     if item = invalid then return
 
     m.heroTitle.text = item.title
+    for each g in m.heroGlow
+        if g <> invalid then g.text = item.title
+    end for
     m.heroDesc.text  = item.description
     if item.HDPosterUrl <> invalid and item.HDPosterUrl <> ""
         m.bgPoster.uri = item.HDPosterUrl

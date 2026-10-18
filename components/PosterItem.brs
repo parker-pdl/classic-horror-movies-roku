@@ -27,7 +27,7 @@ sub onFocusChanged()
     fp = m.top.focusPercent
     s  = 1.0 + (0.12 * fp)
     m.top.scale = [s, s]
-    m.focusBorder.opacity = fp
+    m.focusBorder.opacity = 1.0 - fp
     m.focusGlow.opacity   = fp
     m.titleScrim.opacity  = fp
     m.titleLabel.opacity  = fp

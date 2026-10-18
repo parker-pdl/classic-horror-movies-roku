@@ -16,6 +16,7 @@ sub init()
     m.bufferingLabel    = m.top.findNode("bufferingLabel")
 
     m.isPlaying = false
+    m.playCounted = false
 
     m.videoPlayer.observeField("state", "onVideoStateChanged")
 end sub
@@ -85,6 +86,7 @@ sub playVideo()
     m.videoPlayer.control           = "play"
     m.videoPlayer.setFocus(true)
     m.isPlaying = true
+    m.playCounted = false
     m.statusLabel.text = ""
 end sub
 
@@ -93,6 +95,10 @@ sub onVideoStateChanged()
     if state = "playing"
         m.bufferingOverlay.visible = false
         m.top.playbackStarted = true
+        if m.playCounted <> true
+            m.playCounted = true
+            countPlay()
+        end if
     else if state = "buffering"
         m.bufferingOverlay.visible = true
         m.bufferingLabel.text = "Buffering..."
@@ -108,6 +114,19 @@ sub onVideoStateChanged()
         stopVideo()
         showError("Playback error" + errInfo + chr(10) + "The stream may be temporarily unavailable — try another title.")
     end if
+end sub
+
+' Report one movie start (only once the stream is really playing).
+sub countPlay()
+    item = m.top.itemContent
+    if item = invalid then return
+    itemId = item.id
+    if itemId = invalid or itemId = "" then itemId = item.title
+    beacon = createObject("roSGNode", "PlayBeacon")
+    beacon.itemId  = itemId
+    beacon.title   = item.title
+    beacon.control = "RUN"
+    m.beacon = beacon      ' keep a reference so the task is not collected early
 end sub
 
 sub stopVideo()

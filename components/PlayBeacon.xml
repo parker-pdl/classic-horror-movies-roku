@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- =======================================================================
+     PlayBeacon — Task node that reports one movie start to the
+     pdl-play-counter worker, off the render thread. Sends only the feed id
+     and title; nothing about the viewer or device.
+     ======================================================================= -->
+<component name="PlayBeacon" extends="Task">
+    <interface>
+        <field id="itemId" type="string" />
+        <field id="title"  type="string" />
+    </interface>
+    <script type="text/brightscript" uri="PlayBeacon.brs" />
+</component>

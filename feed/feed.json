@@ -1,64 +1,108 @@
 {
   "providerName": "Classic Horror Movies by: ParkerDataLink.com",
-  "lastUpdated": "2026-08-20",
+  "lastUpdated": "2026-10-18",
   "language": "en",
   "categories": [
     {
-      "title": "Top 5",
+      "title": "Top 10 Halloween Picks",
       "items": [
         {
-          "id": "advent-2026",
-          "title": "Advent",
+          "id": "night-of-the-living-dead-1968-hw",
+          "title": "#1 Night of the Living Dead",
+          "year": "1968",
+          "description": "A group of strangers barricade themselves inside a farmhouse as the dead rise outside.",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/posters/night-of-the-living-dead-1968.jpg",
+          "streamUrl": "https://archive.org/download/NightOfTheLivingDead1968-Restored/Notld1968Restoration-desktop.mp4",
+          "streamFormat": "mp4"
+        },
+        {
+          "id": "carnival-of-souls-1962-hw",
+          "title": "#2 Carnival of Souls",
+          "year": "1962",
+          "description": "A woman survives a car crash but becomes drawn to a mysterious abandoned pavilion.",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/posters/carnival-of-souls-1962.jpg",
+          "streamUrl": "https://archive.org/download/carnival_of_souls/carnival_of_souls.mp4",
+          "streamFormat": "mp4"
+        },
+        {
+          "id": "house-on-haunted-hill-1959-hw",
+          "title": "#3 House on Haunted Hill",
+          "year": "1959",
+          "description": "Vincent Price invites guests to a haunted mansion for a deadly night of terror.",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/posters/house-on-haunted-hill-1959.jpg",
+          "streamUrl": "https://archive.org/download/HouseOnHauntedHill1959/House-On-Haunted-Hill.mp4",
+          "streamFormat": "mp4"
+        },
+        {
+          "id": "nosferatu-1922-hw",
+          "title": "#4 Nosferatu",
+          "year": "1922",
+          "description": "The silent vampire classic that defined the look of cinematic horror.",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/posters/nosferatu-1922.jpg",
+          "streamUrl": "https://archive.org/download/Nosferatu1922/Nosferatu.mp4",
+          "streamFormat": "mp4"
+        },
+        {
+          "id": "white-zombie-1932-hw",
+          "title": "#5 White Zombie",
+          "year": "1932",
+          "description": "A man turns to a voodoo master to control the woman he loves.",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/posters/white-zombie-1932.jpg",
+          "streamUrl": "https://archive.org/download/WhiteZombie1932/WhiteZombie.mp4",
+          "streamFormat": "mp4"
+        },
+        {
+          "id": "the-cabinet-of-dr-caligari-1920-hw",
+          "title": "#6 The Cabinet of Dr. Caligari",
+          "year": "1920",
+          "description": "A hypnotist uses a sleepwalker to commit murders in this surreal horror classic.",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/posters/the-cabinet-of-dr-caligari-1920.jpg",
+          "streamUrl": "https://archive.org/download/the-cabinet-of-dr.-caligari-1920-1080p/The%20Cabinet%20of%20Dr.%20Caligari%20%281920%29%201080p.mp4",
+          "streamFormat": "mp4"
+        },
+        {
+          "id": "the-phantom-of-the-opera-1925-hw",
+          "title": "#7 The Phantom of the Opera",
+          "year": "1925",
+          "description": "A disfigured composer haunts the Paris Opera House in this silent classic.",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/posters/the-phantom-of-the-opera-1925.jpg",
+          "streamUrl": "https://archive.org/download/silent-the-phantom-of-the-opera/The%20Phantom%20of%20the%20Opera.mp4",
+          "streamFormat": "mp4"
+        },
+        {
+          "id": "the-little-shop-of-horrors-1960-hw",
+          "title": "#8 The Little Shop of Horrors",
+          "year": "1960",
+          "description": "A florist's assistant raises a man-eating plant with a taste for blood.",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/posters/the-little-shop-of-horrors-1960.jpg",
+          "streamUrl": "https://archive.org/download/the-little-shop-of-horrors-1960/The%20Little%20Shop%20of%20Horrors%20%281960%29.mp4",
+          "streamFormat": "mp4"
+        },
+        {
+          "id": "the-brain-that-wouldn-t-die-1962-hw",
+          "title": "#9 The Brain That Wouldn't Die",
+          "year": "1962",
+          "description": "A mad surgeon keeps his fiancée's severed head alive while hunting for a new body.",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/posters/the-brain-that-wouldn-t-die-1962.jpg",
+          "streamUrl": "https://archive.org/download/the_brain_that_wouldnt_die/the_brain_that_wouldnt_die.mp4",
+          "streamFormat": "mp4"
+        },
+        {
+          "id": "plan-9-from-outer-space-1959-hw",
+          "title": "#10 Plan 9 from Outer Space",
+          "year": "1959",
+          "description": "Aliens resurrect the dead in a bizarre attempt to stop humanity's destructive weapons.",
+          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/posters/plan-9-from-outer-space-1959.jpg",
+          "streamUrl": "https://archive.org/download/plan-9-from-outer-space_zomboo/Plan%209%20from%20Outer%20Space.mp4",
+          "streamFormat": "mp4"
+        },
+        {
+          "id": "halloween-app-promo-2026",
+          "title": "Bonus: Top 10 Halloween Apps",
           "year": "2026",
-          "description": "A horror short from filmmaker Carlos Alejandro Forcada, starring Ariel Cicciari and Claudia Nevot.",
-          "poster": "pkg:/images/promo/advent-poster-portrait.jpg",
-          "streamUrl": "https://video.parkerdatalink.com/Advent_2026_small.mp4",
-          "streamFormat": "mp4",
-          "rights": "Used with permission of the filmmaker"
-        },
-        {
-          "id": "other-lily-2015",
-          "title": "Other Lily",
-          "year": "2015",
-          "description": "Lily suffers from sleep paralysis that may have horrific implications on her waking life.",
-          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/other-lily-2015.jpg",
-          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/Other_Lily_2015.mp4",
-          "streamFormat": "mp4"
-        },
-        {
-          "id": "backrooms-level-cri-2022",
-          "title": "The Backrooms - Level ! (C.R.I. Found Footage)",
-          "year": "2022",
-          "description": "A Cubic Edition of the Backrooms Level ! 'Run For Your Life' found-footage horror sequence.",
-          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/backrooms-level-cri-2022.jpg",
-          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/The-Backrooms-Level-_-_C.R.I.-Found-Footage.mp4",
-          "streamFormat": "mp4"
-        },
-        {
-          "id": "backrooms-level-2-2022",
-          "title": "The Backrooms - Level 2: Pipe Dreams",
-          "year": "2022",
-          "description": "Found-footage horror set in Level 2 of the Backrooms, known as Pipe Dreams.",
-          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/backrooms-level-2-2022.jpg",
-          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/The-Backrooms-Level-2-_Found-Footage.mp4",
-          "streamFormat": "mp4"
-        },
-        {
-          "id": "there-is-no-antimemetics-2024",
-          "title": "There Is No Antimemetics Division",
-          "year": "2024",
-          "description": "Three individuals attempt to reconcile fractured memories and incomplete observations regarding something that is simultaneously known and unknowable.",
-          "poster": "https://pub-3ece269d2dd44298a19cc5f5355f7802.r2.dev/there-is-no-antimemetics-2024.jpg",
-          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/antimemetics/antimemetics.m3u8",
-          "streamFormat": "hls"
-        },
-        {
-          "id": "my-passion-promo-2026",
-          "title": "My Passion (Watch Our Ad)",
-          "year": "2026",
-          "description": "A quick promo for the Parker Data Link Roku channel itself -- tap to watch.",
-          "poster": "pkg:/images/promo/my-passion-poster.jpg",
-          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/my-passion-1.mp4",
+          "description": "Our countdown of the best free Halloween and horror apps for your phone, PC and TV. Links at ParkerDataLink.com.",
+          "poster": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/Halloween-App-Promo-poster.jpg",
+          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/Halloween-App-Promo.mp4",
           "streamFormat": "mp4"
         }
       ]
@@ -1430,6 +1474,15 @@
     {
       "title": "PDL Trailers",
       "items": [
+        {
+          "id": "halloween-app-promo-2026",
+          "title": "Bonus: Top 10 Halloween Apps",
+          "year": "2026",
+          "description": "Our countdown of the best free Halloween and horror apps for your phone, PC and TV. Links at ParkerDataLink.com.",
+          "poster": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/Halloween-App-Promo-poster.jpg",
+          "streamUrl": "https://pub-4a1ee3e926844caba75e0b33d0b2208d.r2.dev/Halloween-App-Promo.mp4",
+          "streamFormat": "mp4"
+        },
         {
           "id": "pdl-promo-parker-data-link",
           "title": "Parker Data Link Promo",

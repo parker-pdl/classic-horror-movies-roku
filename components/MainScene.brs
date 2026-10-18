@@ -14,6 +14,8 @@ sub init()
     m.splashScreen = m.top.findNode("splashScreen")
     m.homeScreen   = m.top.findNode("homeScreen")
     m.detailScreen = m.top.findNode("detailScreen")
+    m.supportScreen = m.top.findNode("supportScreen")
+    if m.supportScreen <> invalid then m.supportScreen.observeField("goBack", "onSupportBack")
 
     m.splashDone        = false
     m.homeRevealed      = false
@@ -154,6 +156,15 @@ end sub
 
 sub onItemSelected(event as Dynamic)
     selectedItem = event.getData()
+    if selectedItem <> invalid and selectedItem.id = "pdl-support"
+        if m.homeScreen <> invalid
+            m.homeScreen.screenActive = false
+            m.homeScreen.visible = false
+        end if
+        m.supportScreen.visible = true
+        m.supportScreen.setFocus(true)
+        return
+    end if
     if selectedItem <> invalid
         m.detailScreen.autoPlay    = false
         m.detailScreen.itemContent = selectedItem
@@ -163,6 +174,14 @@ sub onItemSelected(event as Dynamic)
         end if
         m.detailScreen.visible = true
         m.detailScreen.setFocus(true)
+    end if
+end sub
+
+sub onSupportBack()
+    if m.supportScreen <> invalid then m.supportScreen.visible = false
+    if m.homeScreen <> invalid
+        m.homeScreen.screenActive = true
+        m.homeScreen.visible = true
     end if
 end sub
 

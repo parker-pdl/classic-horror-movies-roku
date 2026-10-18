@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- =======================================================================
+     SupportScreen — "Settings & Support" page. Shows a QR code viewers scan
+     with their phone to donate. Nothing is bought inside the channel.
+     Back returns to the home screen.
+     ======================================================================= -->
+<component name="SupportScreen" extends="Group">
+
+    <interface>
+        <field id="goBack" type="boolean" value="false" alwaysNotify="true" />
+    </interface>
+
+    <children>
+        <Poster uri="pkg:/images/home_bg.jpg" width="1920" height="1080" loadDisplayMode="scaleToZoom" />
+        <Rectangle width="1920" height="1080" color="0x0B0414F0" />
+
+        <Label text="SETTINGS &amp; SUPPORT"
+            font="font:LargeBoldSystemFont" color="0xB44CFFFF"
+            width="1720" height="60" translation="[100, 60]" />
+        <Label text="by ParkerDataLink.com"
+            font="font:MediumSystemFont" color="0x3DFF7AFF"
+            width="900" height="40" translation="[102, 120]" />
+
+        <!-- QR code on a white card so phones can read it -->
+        <Rectangle width="520" height="520" translation="[160, 270]" color="0x3DFF7AFF" />
+        <Rectangle width="500" height="500" translation="[170, 280]" color="0xFFFFFFFF" />
+        <Poster uri="pkg:/images/donate_qr.png" width="460" height="460" translation="[190, 300]" />
+
+        <Label text="A lot of this is free."
+            font="font:LargeBoldSystemFont" color="0xFFFFFFFF"
+            width="1000" height="60" translation="[780, 300]" />
+        <Label text="Help us keep it that way."
+            font="font:LargeBoldSystemFont" color="0xFFFFFFFF"
+            width="1000" height="60" translation="[780, 365]" />
+        <Label text="Free classic horror movies. No subscription. No sign-up."
+            font="font:MediumSystemFont" color="0xE0E0E0FF"
+            wrap="true" maxLines="2"
+            width="980" height="90" translation="[780, 460]" />
+        <Label text="Scan the code with your phone camera to donate."
+            font="font:MediumBoldSystemFont" color="0x3DFF7AFF"
+            wrap="true" maxLines="2"
+            width="980" height="90" translation="[780, 570]" />
+        <Label text="parkerdatalink.com/donations"
+            font="font:MediumBoldSystemFont" color="0x21F3FFFF"
+            width="980" height="44" translation="[780, 680]" />
+
+        <Label text="Press BACK to return to the movies"
+            font="font:SmallSystemFont" color="0xAAAAAAFF"
+            width="1720" height="36" translation="[100, 960]" />
+    </children>
+
+    <script type="text/brightscript">
+    <![CDATA[
+    function onKeyEvent(key as String, press as Boolean) as Boolean
+        if not press then return false
+        if key = "back" or key = "OK"
+            m.top.goBack = true
+            return true
+        end if
+        return true   ' swallow other keys while this page is open
+    end function
+    ]]>
+    </script>
+</component>
